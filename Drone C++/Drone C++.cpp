@@ -4,13 +4,12 @@
 #include "stdafx.h"
 
 #include "STDEXCPT.h"
-
+#include "Connection.h"
 
 #include <thread>
 
 #include <winsock2.h>
 #include <WS2tcpip.h>
-#include <time.h>
 
 #include <iostream>
 
@@ -104,6 +103,6 @@ int testConnexion() {
 int main()
 {
 	//testThread();
-	testConnexion();
+	//testConnexion();
 }
 

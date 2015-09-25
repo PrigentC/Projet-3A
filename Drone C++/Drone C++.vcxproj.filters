@@ -13,18 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers sources\Drone">
-      <UniqueIdentifier>{e69f3911-3ced-43eb-b32a-59a9fdcc88b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Drone">
-      <UniqueIdentifier>{fb3c572c-c7bd-4b17-8789-4c74e7ed44f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Drone\App">
-      <UniqueIdentifier>{3877afe7-0dfd-4b68-84dc-d7b0f576466c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Drone\App">
-      <UniqueIdentifier>{1a9bbfb1-e294-4d29-9fdc-1c3b4eb0a8b9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,8 +24,8 @@
     <ClInclude Include="targetver.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="DroneConstants.h">
-      <Filter>Fichiers d%27en-tête\Drone\App</Filter>
+    <ClInclude Include="Connection.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,8 +35,8 @@
     <ClCompile Include="Drone C++.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Drone2App.cpp">
-      <Filter>Fichiers sources\Drone\App</Filter>
+    <ClCompile Include="Connection.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
