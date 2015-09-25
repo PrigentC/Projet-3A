@@ -45,7 +45,7 @@ void testThread() {
 	std::cout << "Final value of n is " << n << '\n';
 }
 
-int testConnexion() {
+int testConnection() {
 	WSADATA data;
 	WSAStartup(0x202, &data);
 
@@ -63,7 +63,7 @@ int testConnexion() {
 
 	//(L)PCSTR = (Long) Pointer Constant String
 	int iResult = getaddrinfo(adresse.c_str(), port.c_str(), &hints, &result);
-	std::cout << iResult;
+	std::cout << iResult <<std::endl;
 
 	// Attempt to connect to the first address returned by
 	// the call to getaddrinfo
@@ -104,5 +104,63 @@ int main()
 {
 	//testThread();
 	//testConnexion();
+
+	Connection co;
+	co.ATCommandsConnection();
+
+	char trame[12];
+	trame[0] = 0x41;
+	trame[1] = 0x54;
+	trame[2] = 0x2a;
+	trame[3] = 0x46;
+	trame[4] = 0x54;
+	trame[5] = 0x52;
+	trame[6] = 0x49;
+	trame[7] = 0x4D;
+	trame[8] = 0x3D;
+	trame[9] = 0x031;
+	trame[10] = 0x2C;
+	trame[11] = 0xA;
+
+	int recvbuflen = 12;
+
+	char recvbuf[12];
+
+
+	int iResult;
+
+	// Send an initial buffer
+	iResult = send(co.ConnectSocket, trame, (int)strlen(trame), 0);
+	if (iResult == SOCKET_ERROR) {
+		printf("send failed: %d\n", WSAGetLastError());
+		closesocket(co.ConnectSocket);
+		WSACleanup();
+		return 1;
+	}
+
+	printf("Bytes Sent: %ld\n", iResult);
+
+	// shutdown the connection for sending since no more data will be sent
+	// the client can still use the ConnectSocket for receiving data
+	iResult = shutdown(co.ConnectSocket, SD_SEND);
+	if (iResult == SOCKET_ERROR) {
+		printf("shutdown failed: %d\n", WSAGetLastError());
+		closesocket(co.ConnectSocket);
+		WSACleanup();
+		return 1;
+	}
+
+	do {
+		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		std::cout << iResult;
+		if (iResult > 0)
+			printf("Bytes received: %d\n", iResult);
+		else if (iResult == 0)
+			printf("Connection closed\n");
+		else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);
+
+
 }
 

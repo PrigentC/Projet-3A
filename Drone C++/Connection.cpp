@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "Connection.h"
 
+Connection::Connection()
+{
+}
+
+Connection::~Connection()
+{
+}
+
 void Connection::Initialize()
 {
 	WSAStartup(0x202, &data);
@@ -46,14 +54,6 @@ void Connection::ConnectServer()
 	}
 
 	std::cout << "Able to connect to the Drone !\n" << std::endl;
-}
-
-Connection::Connection()
-{
-}
-
-Connection::~Connection()
-{
 }
 
 void Connection::NavdataConnection()

@@ -10,6 +10,8 @@
 
 class Connection {
 public :
+	SOCKET ConnectSocket = INVALID_SOCKET;
+
 	/* Constructor and destructor */
 	Connection();
 	~Connection();
@@ -28,8 +30,6 @@ private :
 	WSADATA data;
 
 	struct addrinfo	*result = NULL, *ptr = NULL, hints;
-
-	SOCKET ConnectSocket = INVALID_SOCKET;
 
 	/* Methods */
 	void Initialize();
