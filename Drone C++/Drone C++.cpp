@@ -95,7 +95,7 @@ int testConnection() {
 		return 1;
 	}
 
-	printf("Able to connect to the Drone thingy !\n");
+	printf("Able to connect to the Drone !\n");
 	return 0;
 
 }
@@ -106,31 +106,98 @@ int main()
 	//testConnexion();
 
 	Connection co;
-	co.ATCommandsConnection();
+	co.NavdataConnection();
+	
+	int recvbuflen = 124;
 
-	char trame[12];
-	trame[0] = 0x41;
-	trame[1] = 0x54;
-	trame[2] = 0x2a;
-	trame[3] = 0x46;
-	trame[4] = 0x54;
-	trame[5] = 0x52;
-	trame[6] = 0x49;
-	trame[7] = 0x4D;
-	trame[8] = 0x3D;
-	trame[9] = 0x031;
-	trame[10] = 0x2C;
-	trame[11] = 0xA;
+	char recvbuf[124];
 
-	int recvbuflen = 12;
+	u_long iMode = 1;
 
-	char recvbuf[12];
-
-
+	//int iResult = ioctlsocket(co.ConnectSocket, FIONBIO, &iMode);
 	int iResult;
 
+	char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
+	std::cout << wakeup << std::endl;
 	// Send an initial buffer
-	iResult = send(co.ConnectSocket, trame, (int)strlen(trame), 0);
+	iResult = send(co.ConnectSocket, wakeup, (int)strlen(wakeup), 0);
+	if (iResult == SOCKET_ERROR) {
+		printf("send failed: %d\n", WSAGetLastError());
+		closesocket(co.ConnectSocket);
+		WSACleanup();
+		return 1;
+	}
+
+	printf("Bytes Sent: %ld\n", iResult);
+
+	int header = 0;
+
+	do {
+		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		std::cout << recvbuf << std::endl;
+
+		if (iResult == header) {
+			printf("Connection closed\n");
+			break;
+		}			
+		else if (iResult > 0) {
+			printf("Bytes received: %d\n", iResult);
+			header = 24;
+		}
+		else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);
+
+
+
+	char trame1[] = "AT*CONFIG=\"general:navdata_demo\",\"TRUE\"\r";
+	std::cout << trame1 << std::endl;
+	// Send an initial buffer
+	iResult = send(co.ConnectSocket, trame1, (int)strlen(trame1), 0);
+	if (iResult == SOCKET_ERROR) {
+		printf("send failed: %d\n", WSAGetLastError());
+		closesocket(co.ConnectSocket);
+		WSACleanup();
+		return 1;
+	}
+
+	printf("Bytes Sent: %ld\n", iResult);
+
+	header = 0;
+
+	do {
+		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		std::cout << recvbuf << std::endl;
+
+		if (iResult == header) {
+			printf("Connection closed\n");
+			break;
+		}
+		else if (iResult > 0) {
+			printf("Bytes received: %d\n", iResult);
+			header = iResult;
+		}
+		else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);
+
+	/*do {
+
+		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		if (iResult > 0)
+			printf("Bytes received: %d\n", iResult);
+		else if (iResult == 0)
+			printf("Connection closed\n");
+		else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);*/
+
+
+
+	char trame2[] = "AT*CTRL=5";
+	std::cout << trame2 << std::endl;
+	// Send an initial buffer
+	iResult = send(co.ConnectSocket, trame2, (int)strlen(trame2), 0);
 	if (iResult == SOCKET_ERROR) {
 		printf("send failed: %d\n", WSAGetLastError());
 		closesocket(co.ConnectSocket);
@@ -150,16 +217,35 @@ int main()
 		return 1;
 	}
 
+	header = 0;
+
 	do {
 		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
-		std::cout << iResult;
+		std::cout << recvbuf << std::endl;
+
+		if (iResult == header) {
+			printf("Connection closed\n");
+			break;
+		}
+		else if (iResult > 0) {
+			printf("Bytes received: %d\n", iResult);
+			header = 24;
+		}
+		else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);
+
+/*
+	do {
+
+		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
 		if (iResult > 0)
 			printf("Bytes received: %d\n", iResult);
 		else if (iResult == 0)
 			printf("Connection closed\n");
 		else
 			printf("recv failed: %d\n", WSAGetLastError());
-	} while (iResult > 0);
+	} while (iResult > 0);*/
 
 
 }
