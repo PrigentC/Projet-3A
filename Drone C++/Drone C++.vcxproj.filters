@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\Connection">
+      <UniqueIdentifier>{52dc5416-3a3d-4ff0-b46f-51ff594b18e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Connection\UDP">
+      <UniqueIdentifier>{89d034e9-c1da-4a51-ba24-148be45959a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Connection\Buffer">
+      <UniqueIdentifier>{2596ab0b-7790-43a0-b9c5-8d4e387619b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\UDP">
+      <UniqueIdentifier>{efbfc6aa-67b3-4cb0-b7ce-e4f8e3f26f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Buffer">
+      <UniqueIdentifier>{d70482c7-f179-4e59-9905-2d957f6861cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,6 +42,30 @@
     <ClInclude Include="Connection.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectionHeader\Sink.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\Source.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\UDP\UDPSource.h">
+      <Filter>Fichiers d%27en-tête\UDP</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\UDP\UDPSink.h">
+      <Filter>Fichiers d%27en-tête\UDP</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\UDP\UDPError.h">
+      <Filter>Fichiers d%27en-tête\UDP</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\Buffer\Printable.h">
+      <Filter>Fichiers d%27en-tête\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\Buffer\ByteBuffer.h">
+      <Filter>Fichiers d%27en-tête\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionHeader\Buffer\Buffer.h">
+      <Filter>Fichiers d%27en-tête\Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +76,27 @@
     </ClCompile>
     <ClCompile Include="Connection.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\Source.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\Buffer.cpp">
+      <Filter>Fichiers sources\Connection\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\ByteBuffer.cpp">
+      <Filter>Fichiers sources\Connection\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\Printable.cpp">
+      <Filter>Fichiers sources\Connection\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\UDPError.cpp">
+      <Filter>Fichiers sources\Connection\UDP</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\UDPSink.cpp">
+      <Filter>Fichiers sources\Connection\UDP</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\UDPSource.cpp">
+      <Filter>Fichiers sources\Connection\UDP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

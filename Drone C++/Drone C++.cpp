@@ -105,8 +105,11 @@ int main()
 	//testThread();
 	//testConnexion();
 
-	Connection co;
-	co.NavdataConnection();
+	Connection atc;
+	Connection nav;
+
+	atc.ATCommandsConnection();
+	nav.NavdataConnection();
 	
 	int recvbuflen = 124;
 
@@ -117,13 +120,14 @@ int main()
 	//int iResult = ioctlsocket(co.ConnectSocket, FIONBIO, &iMode);
 	int iResult;
 
+	std::cout << "Sending wakeup on navData" << std::endl;
 	char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
 	std::cout << wakeup << std::endl;
 	// Send an initial buffer
-	iResult = send(co.ConnectSocket, wakeup, (int)strlen(wakeup), 0);
+	iResult = send(nav.ConnectSocket, wakeup, (int)strlen(wakeup), 0);
 	if (iResult == SOCKET_ERROR) {
 		printf("send failed: %d\n", WSAGetLastError());
-		closesocket(co.ConnectSocket);
+		closesocket(nav.ConnectSocket);
 		WSACleanup();
 		return 1;
 	}
@@ -132,8 +136,9 @@ int main()
 
 	int header = 0;
 
+	std::cout << "Listening to answer on navData" << std::endl;
 	do {
-		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		iResult = recv(nav.ConnectSocket, recvbuf, recvbuflen, 0);
 		std::cout << recvbuf << std::endl;
 
 		if (iResult == header) {
@@ -148,15 +153,17 @@ int main()
 			printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);
 
+	std::cout << std::endl;
 
-
-	char trame1[] = "AT*CONFIG=\"general:navdata_demo\",\"TRUE\"\r";
+	
+	std::cout << "Sending Navdata_demo on ATCommands" << std::endl;
+	char trame1[] = "AT*CONFIG=1,\"general:navdata_demo\",\"TRUE\"\r";
 	std::cout << trame1 << std::endl;
 	// Send an initial buffer
-	iResult = send(co.ConnectSocket, trame1, (int)strlen(trame1), 0);
+	iResult = send(atc.ConnectSocket, trame1, (int)strlen(trame1), 0);
 	if (iResult == SOCKET_ERROR) {
 		printf("send failed: %d\n", WSAGetLastError());
-		closesocket(co.ConnectSocket);
+		closesocket(atc.ConnectSocket);
 		WSACleanup();
 		return 1;
 	}
@@ -165,8 +172,9 @@ int main()
 
 	header = 0;
 
+	std::cout << "Listening to answer on navData" << std::endl;
 	do {
-		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		iResult = recv(nav.ConnectSocket, recvbuf, recvbuflen, 0);
 		std::cout << recvbuf << std::endl;
 
 		if (iResult == header) {
@@ -181,6 +189,9 @@ int main()
 			printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);
 
+	std::cout << std::endl;
+
+
 	/*do {
 
 		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
@@ -193,14 +204,14 @@ int main()
 	} while (iResult > 0);*/
 
 
-
-	char trame2[] = "AT*CTRL=5";
+	std::cout << "Sending CTRL on ATCommands" << std::endl;
+	char trame2[] = "AT*CTRL=2,5,\r";
 	std::cout << trame2 << std::endl;
 	// Send an initial buffer
-	iResult = send(co.ConnectSocket, trame2, (int)strlen(trame2), 0);
+	iResult = send(atc.ConnectSocket, trame2, (int)strlen(trame2), 0);
 	if (iResult == SOCKET_ERROR) {
 		printf("send failed: %d\n", WSAGetLastError());
-		closesocket(co.ConnectSocket);
+		closesocket(atc.ConnectSocket);
 		WSACleanup();
 		return 1;
 	}
@@ -209,18 +220,19 @@ int main()
 
 	// shutdown the connection for sending since no more data will be sent
 	// the client can still use the ConnectSocket for receiving data
-	iResult = shutdown(co.ConnectSocket, SD_SEND);
+	iResult = shutdown(nav.ConnectSocket, SD_SEND);
 	if (iResult == SOCKET_ERROR) {
 		printf("shutdown failed: %d\n", WSAGetLastError());
-		closesocket(co.ConnectSocket);
+		closesocket(nav.ConnectSocket);
 		WSACleanup();
 		return 1;
 	}
 
 	header = 0;
 
+	std::cout << "Listening to answer on navData" << std::endl;
 	do {
-		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+		iResult = recv(atc.ConnectSocket, recvbuf, recvbuflen, 0);
 		std::cout << recvbuf << std::endl;
 
 		if (iResult == header) {
@@ -234,6 +246,8 @@ int main()
 		else
 			printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);
+
+	std::cout << std::endl;
 
 /*
 	do {
