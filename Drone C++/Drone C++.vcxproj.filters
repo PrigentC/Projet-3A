@@ -60,6 +60,18 @@
     <ClInclude Include="ConnectionH\TCPConnection.h">
       <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectionH\NavDataConnection.h">
+      <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionH\ConfigConnection.h">
+      <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionH\VideoConnection.h">
+      <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionH\ATCommandConnection.h">
+      <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +99,18 @@
       <Filter>Fichiers sources\Connection</Filter>
     </ClCompile>
     <ClCompile Include="Connection\TCPConnection.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\NavDataConnection.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\ConfigConnection.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\VideoConnection.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\ATCommandConnection.cpp">
       <Filter>Fichiers sources\Connection</Filter>
     </ClCompile>
   </ItemGroup>

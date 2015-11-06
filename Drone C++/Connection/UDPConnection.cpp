@@ -4,8 +4,8 @@
 
 UDPConnection::UDPConnection() {
 	Addr.sin_family = AF_INET;
-	Addr.sin_port = htons(0);
-	Addr.sin_addr.s_addr = inet_addr("10.78.0.16");
+	Addr.sin_port = htons((u_short) port.c_str());
+	Addr.sin_addr.s_addr = inet_addr(addr.c_str());
 }
 
 int UDPConnection::sendDTGram() {
