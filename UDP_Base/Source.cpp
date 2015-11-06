@@ -5,6 +5,7 @@
 //  Created by perronne on 18/04/11.
 //  Copyright 2011 ENSISA. All rights reserved.
 //
+#include "stdafx.h"
 
 #include "Source.h"
 

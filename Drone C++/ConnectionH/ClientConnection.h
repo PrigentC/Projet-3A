@@ -1,5 +1,5 @@
-#ifndef CONNECTION_H
-#define CONNECTION_H
+#ifndef CLIENTCONNECTION_H
+#define CLIENTCONNECTION_H
 
 #include "STDEXCPT.h"
 
@@ -8,13 +8,13 @@
 #include <winsock2.h>
 #include <WS2tcpip.h>
 
-class Connection {
+class ClientConnection {
 public :
 	SOCKET ConnectSocket = INVALID_SOCKET;
 
 	/* Constructor and destructor */
-	Connection();
-	~Connection();
+	ClientConnection();
+	~ClientConnection();
 	
 	/* Methods */
 	void NavdataConnection();
@@ -22,9 +22,11 @@ public :
 	void VideoConnection();
 	void ControlPortConnection();
 
+	void TestClientConnection();
+
 private :
 	/* Members */
-	const std::string adresse = "192.168.1.1";
+	const std::string adresse = "10.78.0.16";
 	std::string port;
 
 	WSADATA data;
@@ -33,7 +35,7 @@ private :
 
 	/* Methods */
 	void Initialize();
-	void CreateSocket();
+	void CreateClientSocket();
 	void ConnectServer();
 };
 

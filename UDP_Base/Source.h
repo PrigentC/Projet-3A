@@ -9,7 +9,7 @@
 #ifndef SOURCE_H
 #define SOURCE_H
 
-#include "../jmp/ByteBuffer.h"
+#include "ByteBuffer.h"
 
 namespace stream
 {

@@ -9,7 +9,7 @@
 #ifndef SINK_H
 #define SINK_H
 
-#include "../jmp/ByteBuffer.h"
+#include "ByteBuffer.h"
 
 namespace stream
 {
@@ -18,7 +18,7 @@ namespace stream
     public:
         virtual ~Sink() {};
         
-        virtual void  send(jmp::ByteBuffer& buffer) const = 0;
+        virtual void  sendPacket(jmp::ByteBuffer& buffer) const = 0;
     };
 }
 #endif

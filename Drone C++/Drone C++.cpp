@@ -1,10 +1,8 @@
 // Drone C++.cpp : définit le point d'entrée pour l'application console.
 //
 
-#include "stdafx.h"
-
 #include "STDEXCPT.h"
-#include "Connection.h"
+#include "ConnectionH\ClientConnection.h"
 
 #include <thread>
 
@@ -100,17 +98,14 @@ int testConnection() {
 
 }
 
-int main()
-{
-	//testThread();
-	//testConnexion();
+int testBoot() {
 
-	Connection atc;
-	Connection nav;
+	ClientConnection atc;
+	ClientConnection nav;
 
 	atc.ATCommandsConnection();
 	nav.NavdataConnection();
-	
+
 	int recvbuflen = 124;
 
 	char recvbuf[124];
@@ -144,18 +139,16 @@ int main()
 		if (iResult == header) {
 			printf("Connection closed\n");
 			break;
-		}			
-		else if (iResult > 0) {
+		} else if (iResult > 0) {
 			printf("Bytes received: %d\n", iResult);
 			header = 24;
-		}
-		else
+		} else
 			printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);
 
 	std::cout << std::endl;
 
-	
+
 	std::cout << "Sending Navdata_demo on ATCommands" << std::endl;
 	char trame1[] = "AT*CONFIG=1,\"general:navdata_demo\",\"TRUE\"\r";
 	std::cout << trame1 << std::endl;
@@ -180,12 +173,10 @@ int main()
 		if (iResult == header) {
 			printf("Connection closed\n");
 			break;
-		}
-		else if (iResult > 0) {
+		} else if (iResult > 0) {
 			printf("Bytes received: %d\n", iResult);
 			header = iResult;
-		}
-		else
+		} else
 			printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);
 
@@ -194,13 +185,13 @@ int main()
 
 	/*do {
 
-		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
-		if (iResult > 0)
-			printf("Bytes received: %d\n", iResult);
-		else if (iResult == 0)
-			printf("Connection closed\n");
-		else
-			printf("recv failed: %d\n", WSAGetLastError());
+	iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+	if (iResult > 0)
+	printf("Bytes received: %d\n", iResult);
+	else if (iResult == 0)
+	printf("Connection closed\n");
+	else
+	printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);*/
 
 
@@ -238,29 +229,93 @@ int main()
 		if (iResult == header) {
 			printf("Connection closed\n");
 			break;
-		}
-		else if (iResult > 0) {
+		} else if (iResult > 0) {
 			printf("Bytes received: %d\n", iResult);
 			header = 24;
-		}
+		} else
+			printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);
+
+	std::cout << std::endl;
+
+	/*
+	do {
+
+	iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
+	if (iResult > 0)
+	printf("Bytes received: %d\n", iResult);
+	else if (iResult == 0)
+	printf("Connection closed\n");
+	else
+	printf("recv failed: %d\n", WSAGetLastError());
+	} while (iResult > 0);*/
+}
+
+int iResult;
+
+/* Client part */
+ClientConnection client;
+
+int clientSend() {
+	client.TestClientConnection();
+
+	u_long iMode = 1;
+
+	//int iResult = ioctlsocket(co.ConnectSocket, FIONBIO, &iMode);
+
+	std::cout << "Sending wakeup on Server" << std::endl;
+	char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
+	std::cout << wakeup << std::endl;
+
+	// Send an initial buffer
+	iResult = send(client.ConnectSocket, wakeup, (int)strlen(wakeup), 0);
+	if (iResult == SOCKET_ERROR) {
+		printf("send failed: %d\n", WSAGetLastError());
+		closesocket(client.ConnectSocket);
+		WSACleanup();
+		return 1;
+	}
+	printf("Bytes Sent: %ld\n", iResult);
+}
+
+int clientReceive() {
+
+	int recvbuflen = 124;
+	char recvbuf[124];
+
+	std::cout << "Client listening to answer" << std::endl;
+	do {
+		iResult = recv(client.ConnectSocket, recvbuf, recvbuflen, 0);
+		if (iResult < 0)
+			printf("Bytes received: %d\n", iResult);
+		else if (iResult == 0)
+			printf("Connection closed\n");
 		else
 			printf("recv failed: %d\n", WSAGetLastError());
 	} while (iResult > 0);
 
 	std::cout << std::endl;
 
-/*
-	do {
+	return 0;
+}
 
-		iResult = recv(co.ConnectSocket, recvbuf, recvbuflen, 0);
-		if (iResult > 0)
-			printf("Bytes received: %d\n", iResult);
-		else if (iResult == 0)
-			printf("Connection closed\n");
-		else
-			printf("recv failed: %d\n", WSAGetLastError());
-	} while (iResult > 0);*/
+int serverReceive() {
 
+	return 0;
+}
+
+int main()
+{
+	//testThread();
+	//testConnexion();
+	//testBoot();
+
+
+	clientSend();
+
+	serverReceive();
+
+	clientReceive();
 
 }
 

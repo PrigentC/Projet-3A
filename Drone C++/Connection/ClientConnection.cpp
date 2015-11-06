@@ -1,15 +1,14 @@
-#include "stdafx.h"
-#include "Connection.h"
+#include "../ConnectionH/ClientConnection.h"
 
-Connection::Connection()
+ClientConnection::ClientConnection()
 {
 }
 
-Connection::~Connection()
+ClientConnection::~ClientConnection()
 {
 }
 
-void Connection::Initialize()
+void ClientConnection::Initialize()
 {
 	WSAStartup(0x202, &data);
 
@@ -18,7 +17,7 @@ void Connection::Initialize()
 	hints.ai_socktype = 0;
 }
 
-void Connection::CreateSocket()
+void ClientConnection::CreateClientSocket()
 {
 	int iResult = getaddrinfo(adresse.c_str(), port.c_str(), &hints, &result);
 	//std::cout << iResult;
@@ -32,7 +31,7 @@ void Connection::CreateSocket()
 		ptr->ai_protocol);
 }
 
-void Connection::ConnectServer()
+void ClientConnection::ConnectServer()
 {
 	// Connect to server.
 	int iResult = connect(ConnectSocket, ptr->ai_addr, ptr->ai_addrlen);
@@ -56,7 +55,7 @@ void Connection::ConnectServer()
 	std::cout << "Able to connect to the Drone !\n" << std::endl;
 }
 
-void Connection::NavdataConnection()
+void ClientConnection::NavdataConnection()
 {
 	Initialize();
 	
@@ -64,11 +63,11 @@ void Connection::NavdataConnection()
 
 	port = "5554";
 
-	CreateSocket();
+	CreateClientSocket();
 	ConnectServer();
 }
 
-void Connection::ATCommandsConnection()
+void ClientConnection::ATCommandsConnection()
 {
 	Initialize();
 
@@ -76,11 +75,11 @@ void Connection::ATCommandsConnection()
 
 	port = "5556";
 
-	CreateSocket();
+	CreateClientSocket();
 	ConnectServer();
 }
 
-void Connection::VideoConnection()
+void ClientConnection::VideoConnection()
 {
 	Initialize();
 
@@ -88,12 +87,12 @@ void Connection::VideoConnection()
 
 	port = "5555";
 
-	CreateSocket();
+	CreateClientSocket();
 	ConnectServer();
 }
 
 
-void Connection::ControlPortConnection()
+void ClientConnection::ControlPortConnection()
 {
 	Initialize();
 
@@ -101,6 +100,17 @@ void Connection::ControlPortConnection()
 
 	port = "5559";
 
-	CreateSocket();
+	CreateClientSocket();
+	ConnectServer();
+}
+
+void ClientConnection::TestClientConnection() {
+	Initialize();
+
+	hints.ai_protocol = IPPROTO_UDP;
+
+	port = "7777";
+
+	CreateClientSocket();
 	ConnectServer();
 }

@@ -9,8 +9,12 @@
 #ifndef UDPSOURCE_H
 #define UDPSOURCE_H
 
-#include <netdb.h>
-#include "../jmp/ByteBuffer.h"
+//#include <netdb.h>
+
+#include <winsock2.h>
+#include <WS2tcpip.h>
+
+#include "ByteBuffer.h"
 #include "Source.h"
 
 
@@ -33,7 +37,7 @@ namespace stream
         int listenSocket;
         
         static const int BUFFER_SIZE;
-        static const suseconds_t TIMEOUT;
+        static const time_t TIMEOUT;
 
     };
 }
