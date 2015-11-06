@@ -9,9 +9,10 @@ public :
 	UDPConnection();
 
 private :
-	sockaddr_in RecvAddr;
+	sockaddr_in Addr;
 
 	int sendDTGram();
+	int recvDTGram();
 
 };
 

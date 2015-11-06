@@ -1,4 +1,4 @@
-#include "SocketConnection.h"
+#include "../ConnectionH/SocketConnection.h"
 
 SocketConnection::SocketConnection()
 {
@@ -16,4 +16,5 @@ int SocketConnection::Initialize() {
 		printf("WSAStartup failed with error: %d\n", iResult);
 		return 1;
 	}
+	return 0;
 }

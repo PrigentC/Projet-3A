@@ -13,7 +13,11 @@ private:
 		*ptr = NULL,
 		hints;
 
+
+	int createTCPSocket();
+	int connectTCPServer();
 	int sendSockStream();
+	int recvSockStream();
 
 };
 
