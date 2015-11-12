@@ -3,6 +3,9 @@
 
 #include "STDEXCPT.h"
 #include "ConnectionH\ClientConnection.h"
+#include "ConnectionH\AtCommandConnection.h"
+#include "ConnectionH\NavDataConnection.h"
+
 
 #include <thread>
 
@@ -251,71 +254,49 @@ int testBoot() {
 	} while (iResult > 0);*/
 }
 
-int iResult;
-
-/* Client part */
-ClientConnection client;
-
-int clientSend() {
-	client.TestClientConnection();
-
-	u_long iMode = 1;
-
-	//int iResult = ioctlsocket(co.ConnectSocket, FIONBIO, &iMode);
-
-	std::cout << "Sending wakeup on Server" << std::endl;
-	char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
-	std::cout << wakeup << std::endl;
-
-	// Send an initial buffer
-	iResult = send(client.ConnectSocket, wakeup, (int)strlen(wakeup), 0);
-	if (iResult == SOCKET_ERROR) {
-		printf("send failed: %d\n", WSAGetLastError());
-		closesocket(client.ConnectSocket);
-		WSACleanup();
-		return 1;
-	}
-	printf("Bytes Sent: %ld\n", iResult);
-}
-
-int clientReceive() {
-
-	int recvbuflen = 124;
-	char recvbuf[124];
-
-	std::cout << "Client listening to answer" << std::endl;
-	do {
-		iResult = recv(client.ConnectSocket, recvbuf, recvbuflen, 0);
-		if (iResult < 0)
-			printf("Bytes received: %d\n", iResult);
-		else if (iResult == 0)
-			printf("Connection closed\n");
-		else
-			printf("recv failed: %d\n", WSAGetLastError());
-	} while (iResult > 0);
-
-	std::cout << std::endl;
-
-	return 0;
-}
-
-int serverReceive() {
-
-	return 0;
-}
-
 int main()
 {
 	//testThread();
 	//testConnexion();
 	//testBoot();
+	
+	
+	AtCommandConnection atc;
+	NavDataConnection nav;
+
+	std::cout << "Wakeup data control" << std::endl;
+	char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
+	std::cout << wakeup << std::endl;
+
+	nav.SendBuff.getBytes(wakeup, 4);
+
+	std::cout << "Sending wakeup on navData" << std::endl;
+	nav.sendDTGram();
+
+	std::cout << "Listening to answer on navData" << std::endl;
+	nav.recvDTGram();
+
+	std::cout << "Answer on navData control" << std::endl;
+	std::cout << nav.RecvBuff << std::endl;
+
+	std::cout << std::endl;
 
 
-	clientSend();
+	std::cout << "Navdata_demo data control" << std::endl;
+	char trame1[] = "AT*CONFIG=1,\"general:navdata_demo\",\"TRUE\"\r";
+	std::cout << trame1 << std::endl;
 
-	serverReceive();
+	atc.SendBuff.getBytes(trame1, 43);
 
-	clientReceive();
+	std::cout << "Sending Navdata_demo on ATCommands" << std::endl;
+	atc.sendDTGram();
 
+	std::cout << "Listening to answer on navData" << std::endl;
+	atc.recvDTGram();
+
+	std::cout << "Answer on ATCommands control" << std::endl;
+	std::cout << atc.RecvBuff << std::endl;
+
+	std::cout << std::endl;
 }
 

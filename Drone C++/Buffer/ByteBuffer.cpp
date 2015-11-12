@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-ByteBuffer::ByteBuffer() : Buffer(1024, 1024, 0), array(new char[1024])
+ByteBuffer::ByteBuffer() : Buffer(2048, 2048, 0), array(new char[2048])
 {}
 
 ByteBuffer::ByteBuffer(size_t size) : Buffer(size, size, 0), array(new char[size]) 

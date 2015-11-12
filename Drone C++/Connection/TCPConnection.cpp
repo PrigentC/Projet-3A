@@ -5,10 +5,12 @@ TCPConnection::TCPConnection() {
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_DGRAM;
 	hints.ai_protocol = IPPROTO_UDP;
+
+	createTCPSocket();
 }
 
 int TCPConnection::createTCPSocket() {
-	iResult = getaddrinfo(addr.c_str(), (u_short)port.c_str(), &hints, &result);
+	iResult = getaddrinfo(addr.c_str(), (PCSTR) port.c_str(), &hints, &result);
 	if (iResult != 0) {
 		printf("getaddrinfo failed with error: %d\n", iResult);
 		WSACleanup();
@@ -42,6 +44,7 @@ int TCPConnection::sendSockStream() {
 		WSACleanup();
 		return 1;
 	}
+	return 0;
 }
 
 int TCPConnection::recvSockStream() {

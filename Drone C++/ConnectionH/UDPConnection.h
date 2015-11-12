@@ -8,11 +8,13 @@ class UDPConnection : public SocketConnection {
 public :
 	UDPConnection();
 
-private :
-	sockaddr_in Addr;
-
+	int createUDPSocket();
+	int bindUDPSocket();
 	int sendDTGram();
 	int recvDTGram();
+
+protected :
+	sockaddr_in Addr;
 
 };
 

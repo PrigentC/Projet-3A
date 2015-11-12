@@ -16,14 +16,15 @@ public :
 	SocketConnection();
 	~SocketConnection();
 
+	ByteBuffer SendBuff;
+	ByteBuffer RecvBuff;
+	int iResult;
+
 protected:
 	WSADATA wsaData;
 	SOCKET ConnectSocket = INVALID_SOCKET;
-	ByteBuffer SendBuff;
-	ByteBuffer RecvBuff;
 	std::string addr;
 	std::string port;
-	int iResult;
 
 private :
 	int Initialize();
