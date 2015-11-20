@@ -5,10 +5,7 @@ SocketConnection::SocketConnection()
 	Initialize();
 }
 
-SocketConnection::~SocketConnection() {
-	closesocket(ConnectSocket);
-	WSACleanup();
-}
+SocketConnection::~SocketConnection() {}
 
 int SocketConnection::Initialize() {
 	iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);

@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-ByteBuffer::ByteBuffer() : Buffer(2048, 2048, 0), array(new char[2048])
+ByteBuffer::ByteBuffer() : Buffer(1024, 1024, 0), array(new char[2048])
 {}
 
 ByteBuffer::ByteBuffer(size_t size) : Buffer(size, size, 0), array(new char[size]) 
@@ -16,12 +16,12 @@ ByteBuffer::~ByteBuffer() {
 
 //Fonctions put
 void ByteBuffer::putBytes(const char* c, size_t size) {
-	if (this->pos + size > this->limit) {
+	if (this->pos + size > this->lim) {
 		throw std::out_of_range("");
 	} else {
 		for (unsigned int i = 0; i < size; i++) {
 			array[pos++] = c[i];
-			limit = pos;
+			lim = pos;
 		}
 	}
 }
@@ -70,12 +70,12 @@ char* ByteBuffer::farray() {
 }
 
 //Fonctions get
-void ByteBuffer::getBytes(char* c, size_t size) {
-	if (this->pos + size > this->limit) {
+const void ByteBuffer::getBytes(char* c, size_t size) {
+	if (this->pos + size > this->lim) {
 		throw std::out_of_range("");
 	} else {
-		for (unsigned int i = 0; i < size; i++) {
-			c[i] = array[pos++];
+		for (size_t i = 0; i < size; i++) {
+			c[i] = array[++pos];
 		}
 	}
 

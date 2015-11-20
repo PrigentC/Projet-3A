@@ -26,7 +26,7 @@ public:
 	virtual void clear();
 	virtual char* farray();
 
-	virtual void getBytes(char * c, size_t);
+	virtual const void getBytes(char * c, size_t);
 	virtual char getByte();
 	virtual std::string getString(size_t);
 	virtual int16_t getInt16();

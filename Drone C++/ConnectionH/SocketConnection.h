@@ -23,8 +23,8 @@ public :
 protected:
 	WSADATA wsaData;
 	SOCKET ConnectSocket = INVALID_SOCKET;
-	std::string addr;
-	std::string port;
+	char* addr = "127.0.0.1";
+	u_short port = 7777;
 
 private :
 	int Initialize();

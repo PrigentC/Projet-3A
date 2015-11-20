@@ -2,7 +2,10 @@
 
 ConfigConnection::ConfigConnection() {
 	addr = "192.168.1.1";
-	port = "5559";
+	port = 5559;
 }
 
-ConfigConnection::~ConfigConnection() {}
+ConfigConnection::~ConfigConnection() {
+	closesocket(ConnectSocket);
+	WSACleanup();
+}

@@ -9,12 +9,12 @@ public :
 	UDPConnection();
 
 	int createUDPSocket();
-	int bindUDPSocket();
 	int sendDTGram();
 	int recvDTGram();
 
 protected :
-	sockaddr_in Addr;
+	sockaddr_in SendToAddr;
+	sockaddr_in RecvFromAddr;
 
 };
 

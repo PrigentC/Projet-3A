@@ -10,7 +10,7 @@ TCPConnection::TCPConnection() {
 }
 
 int TCPConnection::createTCPSocket() {
-	iResult = getaddrinfo(addr.c_str(), (PCSTR) port.c_str(), &hints, &result);
+	iResult = getaddrinfo(addr, (PCSTR) port, &hints, &result);
 	if (iResult != 0) {
 		printf("getaddrinfo failed with error: %d\n", iResult);
 		WSACleanup();
