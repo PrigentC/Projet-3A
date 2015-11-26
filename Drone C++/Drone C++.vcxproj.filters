@@ -69,6 +69,9 @@
     <ClInclude Include="ConnectionH\ATCommandConnection.h">
       <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectionH\Frame.h">
+      <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -105,6 +108,9 @@
       <Filter>Fichiers sources\Connection</Filter>
     </ClCompile>
     <ClCompile Include="Connection\ATCommandConnection.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection\Frame.cpp">
       <Filter>Fichiers sources\Connection</Filter>
     </ClCompile>
   </ItemGroup>

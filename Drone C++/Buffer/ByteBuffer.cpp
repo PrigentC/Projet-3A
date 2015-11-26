@@ -62,7 +62,8 @@ void ByteBuffer::flip() {
 }
 
 void ByteBuffer::clear() {
-	delete[] array;
+	lim = capacity;
+	pos = 0;
 }
 
 char* ByteBuffer::farray() {
