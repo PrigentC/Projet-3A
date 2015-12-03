@@ -5,12 +5,17 @@
 
 #include "UDPConnection.h"
 
-class NavDataConnection : public UDPConnection {
+namespace connection {
+	class NavDataConnection : public UDPConnection {
 
-public :
-	NavDataConnection();
-	~NavDataConnection();
+	public:
+		NavDataConnection();
+		~NavDataConnection();
 
-};
+	};
+
+}
+
+
 
 #endif

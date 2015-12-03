@@ -11,24 +11,28 @@
 #include <winsock2.h>
 #include <WS2tcpip.h>
 
-class SocketConnection {
-public :
-	SocketConnection();
-	~SocketConnection();
+using namespace buffer;
 
-	ByteBuffer SendBuff;
-	ByteBuffer RecvBuff;
-	int iResult;
+namespace connection {
+	class SocketConnection {
+	public:
+		SocketConnection();
+		~SocketConnection();
 
-protected:
-	WSADATA wsaData;
-	SOCKET ConnectSocket = INVALID_SOCKET;
-	char* addr = "127.0.0.1";
-	u_short port = 7777;
+		ByteBuffer SendBuff;
+		ByteBuffer RecvBuff;
+		int iResult;
 
-private :
-	int Initialize();
+	protected:
+		WSADATA wsaData;
+		SOCKET ConnectSocket = INVALID_SOCKET;
+		char* addr = "127.0.0.1";
+		u_short port = 7777;
 
-};
+	private:
+		int Initialize();
+
+	};
+}
 
 #endif

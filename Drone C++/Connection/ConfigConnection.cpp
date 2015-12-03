@@ -1,11 +1,13 @@
 #include "../ConnectionH/ConfigConnection.h"
 
-ConfigConnection::ConfigConnection() {
-	addr = "192.168.1.1";
-	port = 5559;
-}
+namespace connection {
+	ConfigConnection::ConfigConnection() {
+		addr = "192.168.1.1";
+		port = 5559;
+	}
 
-ConfigConnection::~ConfigConnection() {
-	closesocket(ConnectSocket);
-	WSACleanup();
+	ConfigConnection::~ConfigConnection() {
+		closesocket(ConnectSocket);
+		WSACleanup();
+	}
 }

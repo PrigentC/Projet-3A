@@ -3,22 +3,24 @@
 
 #include "SocketConnection.h"
 
-class TCPConnection : public SocketConnection {
+namespace connection {
+	class TCPConnection : public SocketConnection {
 
-public:
-	TCPConnection();
+	public:
+		TCPConnection();
 
-private:
-	struct addrinfo *result = NULL,
-		*ptr = NULL,
-		hints;
+	private:
+		struct addrinfo *result = NULL,
+			*ptr = NULL,
+			hints;
 
 
-	int createTCPSocket();
-	int connectTCPServer();
-	int sendSockStream();
-	int recvSockStream();
+		int createTCPSocket();
+		int connectTCPServer();
+		int sendSockStream();
+		int recvSockStream();
 
-};
+	};
+}
 
 #endif

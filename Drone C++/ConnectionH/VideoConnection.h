@@ -5,12 +5,14 @@
 
 #include "UDPConnection.h"
 
-class VideoConnection : public UDPConnection {
+namespace connection {
+	class VideoConnection : public UDPConnection {
 
-public:
-	VideoConnection();
-	~VideoConnection();
+	public:
+		VideoConnection();
+		~VideoConnection();
 
-};
+	};
+}
 
 #endif

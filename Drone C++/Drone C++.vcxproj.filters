@@ -36,9 +36,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="BufferH\Printable.h">
-      <Filter>Fichiers d%27en-tête\BufferH</Filter>
-    </ClInclude>
     <ClInclude Include="BufferH\Buffer.h">
       <Filter>Fichiers d%27en-tête\BufferH</Filter>
     </ClInclude>
@@ -79,9 +76,6 @@
     </ClCompile>
     <ClCompile Include="Drone C++.cpp">
       <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Buffer\Printable.cpp">
-      <Filter>Fichiers sources\Buffer</Filter>
     </ClCompile>
     <ClCompile Include="Buffer\Buffer.cpp">
       <Filter>Fichiers sources\Buffer</Filter>

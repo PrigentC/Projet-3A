@@ -3,9 +3,11 @@
 
 #include <iostream>
 
-class Buffer {
 
-	public :
+namespace buffer {
+	class Buffer {
+
+	public:
 		Buffer(size_t capacity, size_t limit, size_t pos);
 
 		virtual size_t remaining();
@@ -15,10 +17,11 @@ class Buffer {
 		friend std::ostream& operator << (std::ostream&, const Buffer&);
 		virtual std::ostream& printOn(std::ostream&);
 
-	protected :
+	protected:
 		size_t capacity;
 		size_t lim;
 		size_t pos;
-};
+	};
+}
 
 #endif

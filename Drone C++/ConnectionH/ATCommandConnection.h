@@ -5,12 +5,16 @@
 
 #include "UDPConnection.h"
 
-class AtCommandConnection : public UDPConnection {
+namespace connection {
+	class AtCommandConnection : public UDPConnection {
 
-public:
-	AtCommandConnection();
-	~AtCommandConnection();
+	public:
+		AtCommandConnection();
+		~AtCommandConnection();
 
-};
+	};
+}
+
+
 
 #endif

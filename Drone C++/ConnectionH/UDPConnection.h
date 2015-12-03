@@ -3,20 +3,23 @@
 
 #include "SocketConnection.h"
 
-class UDPConnection : public SocketConnection {
+namespace connection {
+	class UDPConnection : public SocketConnection {
 
-public :
-	UDPConnection();
+	public:
+		UDPConnection();
 
-	int createUDPSocket();
-	int sendDTGram();
-	int recvDTGram();
+		int createUDPSocket();
+		int sendDTGram();
+		int recvDTGram();
 
-protected :
-	sockaddr_in SendToAddr;
-	sockaddr_in RecvFromAddr;
+	protected:
+		sockaddr_in SendToAddr;
+		sockaddr_in RecvFromAddr;
 
-};
+	};
+}
+
 
 #endif
 

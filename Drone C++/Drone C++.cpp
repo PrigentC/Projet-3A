@@ -13,6 +13,8 @@
 
 #include <iostream>
 
+using namespace buffer;
+using namespace connection;
 
 int main()
 {	

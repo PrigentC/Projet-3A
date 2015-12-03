@@ -3,12 +3,14 @@
 
 #include "TCPConnection.h"
 
-class ConfigConnection : public TCPConnection {
+namespace connection {
+	class ConfigConnection : public TCPConnection {
 
-public:
-	ConfigConnection();
-	~ConfigConnection();
+	public:
+		ConfigConnection();
+		~ConfigConnection();
 
-};
+	};
+}
 
 #endif
