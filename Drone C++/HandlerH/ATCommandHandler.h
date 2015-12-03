@@ -8,6 +8,10 @@ namespace handler {
 	class ATCommandHandler {
 	public:
 		static void run();
+
+	private :
+		static void takeOff();
+		static void land();
 	};
 }
 

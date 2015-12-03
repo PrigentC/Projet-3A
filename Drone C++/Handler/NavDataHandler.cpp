@@ -5,7 +5,7 @@ namespace handler {
 
 	}
 
-	void NavDataHandler::sendWakeUp() {
-			
+	void NavDataHandler::WakeUp() {
+		
 	}
 }

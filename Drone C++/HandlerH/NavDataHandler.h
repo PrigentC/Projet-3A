@@ -9,7 +9,8 @@ namespace handler {
 	public:
 		static void run();
 
-		static void sendWakeUp();
+	private :
+		static void WakeUp();
 	};
 }
 
