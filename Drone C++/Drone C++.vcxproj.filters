@@ -78,6 +78,12 @@
     <ClInclude Include="HandlerH\DroneHandler.h">
       <Filter>Fichiers d%27en-tête\HandlerH</Filter>
     </ClInclude>
+    <ClInclude Include="HandlerH\ATCommandHandler.h">
+      <Filter>Fichiers d%27en-tête\HandlerH</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerH\NavDataHandler.h">
+      <Filter>Fichiers d%27en-tête\HandlerH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -117,6 +123,12 @@
       <Filter>Fichiers sources\Connection</Filter>
     </ClCompile>
     <ClCompile Include="Handler\DroneHandler.cpp">
+      <Filter>Fichiers sources\Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler\ATCommandHandler.cpp">
+      <Filter>Fichiers sources\Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler\NavDataHandler.cpp">
       <Filter>Fichiers sources\Handler</Filter>
     </ClCompile>
   </ItemGroup>
