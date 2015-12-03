@@ -25,6 +25,12 @@
     <Filter Include="Fichiers sources\Buffer">
       <UniqueIdentifier>{ca9b5ef1-8b7a-415d-9bb6-115d151eaa0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\HandlerH">
+      <UniqueIdentifier>{0cc1c0ad-b126-4f8a-a55a-2c681171484c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Handler">
+      <UniqueIdentifier>{3bf22184-3cee-4e22-b89e-03390569d311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -69,6 +75,9 @@
     <ClInclude Include="ConnectionH\Frame.h">
       <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
     </ClInclude>
+    <ClInclude Include="HandlerH\DroneHandler.h">
+      <Filter>Fichiers d%27en-tête\HandlerH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -106,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Connection\Frame.cpp">
       <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
+    <ClCompile Include="Handler\DroneHandler.cpp">
+      <Filter>Fichiers sources\Handler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
