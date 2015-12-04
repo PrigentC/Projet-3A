@@ -16,6 +16,4 @@ namespace connection {
 
 }
 
-
-
 #endif

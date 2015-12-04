@@ -1,16 +1,22 @@
 #ifndef NAVDATAHANDLER_H
 #define NAVDATAHANDLER_H
 
+#include "../ConnectionH/Frame.h"
+#include "../ConnectionH/NavDataConnection.h"
+
 #include <thread>
 #include <future>
 
 namespace handler {
 	class NavDataHandler {
 	public:
-		static void run();
+		void run();
 
 	private :
-		static void WakeUp();
+		connection::NavDataConnection navData;
+		connection::Frame frame;
+		
+		void WakeUp();
 	};
 }
 

@@ -8,6 +8,11 @@ namespace handler {
 	class DroneHandler {
 	public :
 		static void run();
+
+	private :
+		NavDataHandler navData;
+		ATCommandHandler atc;
+
 	};
 }
 

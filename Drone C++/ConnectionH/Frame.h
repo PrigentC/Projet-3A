@@ -10,7 +10,8 @@ namespace connection {
 		Frame(std::string cmd, std::string param);
 		~Frame();
 
-		int getTrameLength();
+		int getFrameLength();
+		const char* getFrameContent();
 		int getCurrentSeqNumb();
 		std::string getFrame();
 		void resetSeqNumb();
@@ -19,7 +20,7 @@ namespace connection {
 		Frame takeoff();
 		Frame land();
 		Frame watchdog();
-		//static Frame navdata_demomode();
+		//Frame navdata_demomode();
 
 	private:
 		std::string frame;

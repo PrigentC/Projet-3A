@@ -20,8 +20,12 @@ namespace connection {
 
 	Frame::~Frame() {}
 
-	int Frame::getTrameLength() {
+	int Frame::getFrameLength() {
 		return frame.length();
+	}
+
+	const char* Frame::getFrameContent() {
+		return frame.c_str();
 	}
 
 	int Frame::getCurrentSeqNumb() {

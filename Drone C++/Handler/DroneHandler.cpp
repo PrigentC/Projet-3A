@@ -4,7 +4,7 @@
 
 namespace handler {
 	void DroneHandler::run() {
-		NavDataHandler::run();
-		ATCommandHandler::run();
+		//std::async(std::launch::async, navData.run());
+		//std::async(std::launch::async, atc.run(),50);
 	}
 }

@@ -1,17 +1,23 @@
 #ifndef ATCOMMANDHANDLER_H
 #define ATCOMMANDHANDLER_H
 
+#include "../ConnectionH/ATCommandConnection.h"
+#include "../ConnectionH/Frame.h"
+
 #include <thread>
 #include <future>
 
 namespace handler {
 	class ATCommandHandler {
 	public:
-		static void run();
+		void run();
 
 	private :
-		static void takeOff();
-		static void land();
+		connection::AtCommandConnection atc;
+		connection::Frame frame;
+
+		void takeOff();
+		void land();
 	};
 }
 
