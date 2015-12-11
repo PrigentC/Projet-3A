@@ -13,11 +13,21 @@
 
 #include <iostream>
 
+#include "HandlerH\DroneHandler.h"
+
 using namespace buffer;
 using namespace connection;
+using namespace handler;
 
 int main()
 {	
+	DroneHandler *droneHandler;
+	droneHandler->run();
+	std::cin.ignore();
+	return 0;
+}
+
+void test() {
 	AtCommandConnection atc;
 	NavDataConnection nav;
 

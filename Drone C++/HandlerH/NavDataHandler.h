@@ -7,16 +7,18 @@
 #include <thread>
 #include <future>
 
+using namespace connection;
+
 namespace handler {
 	class NavDataHandler {
 	public:
-		void run();
+		NavDataHandler();
+		static void run();
+		virtual ~NavDataHandler() {};
 
-	private :
-		connection::NavDataConnection navData;
-		connection::Frame frame;
-		
-		void WakeUp();
+	private :		
+		static void WakeUp();
+
 	};
 }
 

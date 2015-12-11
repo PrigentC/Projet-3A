@@ -132,4 +132,7 @@
       <Filter>Fichiers sources\Handler</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>

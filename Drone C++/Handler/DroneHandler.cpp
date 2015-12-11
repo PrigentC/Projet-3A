@@ -1,10 +1,19 @@
 #include "../HandlerH/DroneHandler.h"
-#include "../HandlerH/NavDataHandler.h"
-#include "../HandlerH/ATCommandHandler.h"
 
 namespace handler {
+	DroneHandler::DroneHandler() {}
+
 	void DroneHandler::run() {
-		//std::async(std::launch::async, navData.run());
-		//std::async(std::launch::async, atc.run(),50);
+		NavDataHandler *navData;
+		ATCommandHandler *atc;
+		try {
+			std::cout << "ca marche" << std::endl;
+
+			std::async(std::launch::async, &navData->run);
+			std::async(std::launch::async, &atc->run);
+		}
+		catch (std::exception e) {
+			e.what();
+		}
 	}
 }

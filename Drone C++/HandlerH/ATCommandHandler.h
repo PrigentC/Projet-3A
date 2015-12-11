@@ -7,17 +7,19 @@
 #include <thread>
 #include <future>
 
+using namespace connection;
+
 namespace handler {
 	class ATCommandHandler {
 	public:
-		void run();
+		ATCommandHandler();
+		static void run();
+		virtual ~ATCommandHandler() {};
 
 	private :
-		connection::AtCommandConnection atc;
-		connection::Frame frame;
-
-		void takeOff();
-		void land();
+		static void takeOff();
+		static void watchdog();
+		static void land();
 	};
 }
 
