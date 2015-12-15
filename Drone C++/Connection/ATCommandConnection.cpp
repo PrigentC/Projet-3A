@@ -69,6 +69,19 @@ namespace connection {
 		sendDTGram();
 		SendBuff.clear();
 	}
+
+	void AtCommandConnection::fTrim() {
+		std::cout << "FTrim for stabilizing" << std::endl;
+		//char trame4[] = "AT*FTRIM=3,\r";
+		f.fTrim();
+		f.buildFrame();
+		std::cout << f.getFrame() << std::endl;
+		SendBuff.putBytes(f.getFrame(), f.getFrameLength());
+
+		std::cout << "Sending FTrim on ATCommands" << std::endl;
+		sendDTGram();
+		SendBuff.clear();
+	}
 }
 
 

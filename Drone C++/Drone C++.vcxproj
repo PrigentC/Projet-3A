@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="BufferH\Buffer.h" />
     <ClInclude Include="BufferH\ByteBuffer.h" />
+    <ClInclude Include="ConnectionH\AbstractSocket.h" />
     <ClInclude Include="ConnectionH\ATCommandConnection.h" />
     <ClInclude Include="ConnectionH\ConfigConnection.h" />
     <ClInclude Include="ConnectionH\Frame.h" />

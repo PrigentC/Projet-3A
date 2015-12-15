@@ -53,7 +53,7 @@ namespace connection {
 	}
 
 	void Frame::resetSeqNumb() {
-		seqNumb = 0;
+		seqNumb = 1;
 	}
 
 	char* Frame::wakeup() {
@@ -79,6 +79,10 @@ namespace connection {
 
 	void Frame::watchdog() {
 		com = "COMWDG";
+	}
+
+	void Frame::fTrim() {
+		com = "FTRIM";
 	}
 
 	void Frame::move() {

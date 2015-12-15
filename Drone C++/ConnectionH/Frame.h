@@ -24,13 +24,14 @@ namespace connection {
 		void takeoff();
 		void land();
 		void watchdog();
+		void fTrim();
 		void move();
 
 	private:
 		std::string frame;
 		const std::string prefix = "AT*";
 		std::string com;
-		int seqNumb;
+		int seqNumb = 1;
 		std::list<std::string> params;
 	};
 }

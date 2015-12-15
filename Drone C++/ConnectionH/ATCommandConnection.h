@@ -20,6 +20,7 @@ namespace connection {
 		void takeOff();
 		void land();
 		void watchDog();
+		void fTrim();
 
 	};
 }

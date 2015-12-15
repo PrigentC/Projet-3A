@@ -84,6 +84,9 @@
     <ClInclude Include="HandlerH\NavDataHandler.h">
       <Filter>Fichiers d%27en-tête\HandlerH</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectionH\AbstractSocket.h">
+      <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
