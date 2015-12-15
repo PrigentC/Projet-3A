@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="Buffer\Buffer.cpp" />
     <ClCompile Include="Buffer\ByteBuffer.cpp" />
+    <ClCompile Include="Connection\AbstractSocket.cpp" />
     <ClCompile Include="Connection\ATCommandConnection.cpp" />
     <ClCompile Include="Connection\ConfigConnection.cpp" />
     <ClCompile Include="Connection\Frame.cpp" />
@@ -185,9 +186,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

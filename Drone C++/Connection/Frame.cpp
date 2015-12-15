@@ -1,33 +1,43 @@
 #include "../ConnectionH/Frame.h"
 
 namespace connection {
-	Frame::Frame(std::string cmd) {
-		frame.append(Frame::prefix);
-		frame.append(cmd);
-		frame.append("=");
-		frame.append(std::to_string(Frame::seqNumb));
-		frame.append("\r");
-	}
-
-	Frame::Frame(std::string cmd, std::string param) {
-		frame.append(Frame::prefix);
-		frame.append(cmd);
-		frame.append("=");
-		frame.append(std::to_string(Frame::seqNumb) + ",");
-		frame.append(param);
-		frame.append("\r");
-	}
+	Frame::Frame() {}
 
 	Frame::~Frame() {}
 
-	Frame Frame::buildFrame() {
+	void Frame::buildFrame() {
+		frame.clear();
+
 		frame.append(Frame::prefix);
 		frame.append(com);
 		frame.append("=");
-		frame.append(std::to_string(Frame::seqNumb));
+
+		frame.append(std::to_string(getCurrentSeqNumb()));
+		seqNumb++;
+		frame.append(",");
+
+		frame.append("\r");
+	}
+	
+	void Frame::buildFrameParams() {
+		frame.clear();
+		
+		frame.append(Frame::prefix);
+		frame.append(com);
+		frame.append("=");
+
+		frame.append(std::to_string(getCurrentSeqNumb()));
+		seqNumb++;
+		frame.append(",");
+
+		for (int i = 0 ; i < params.size()+1 ; i++) {
+			frame.append(params.front());
+			params.pop_front();
+		}
+
 		frame.append("\r");
 
-		return frame;
+		params.clear();
 	}
 
 	int Frame::getFrameLength() {
@@ -51,14 +61,20 @@ namespace connection {
 		return wakeup;
 	}
 
+	void Frame::navdataDemoMode() {
+		com = "CONFIG";
+		params.push_back("\"general:navdata_demo\",");
+		params.push_back("\"TRUE\"");
+	}	
+
 	void Frame::takeoff() {
 		com = "REF";
-		Frame f("REF", "290718208");
+		params.push_back("290718208");
 	}
 
 	void Frame::land() {
 		com = "REF";
-		Frame f("REF", "290717696");
+		params.push_back("290717696");
 	}
 
 	void Frame::watchdog() {
@@ -67,6 +83,6 @@ namespace connection {
 
 	void Frame::move() {
 		com = "PCMD";
-		Frame f("PCMD", "0,0,0,0,0.5");
+		//Frame f("PCMD", "0,0,0,0,0.5");
 	}
 }

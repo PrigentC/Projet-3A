@@ -5,6 +5,7 @@
 
 #include "../DroneConstants.h"
 #include "../BufferH/ByteBuffer.h"
+#include "AbstractSocket.h"
 
 #include <iostream>
 #include <string>
@@ -14,7 +15,7 @@
 using namespace buffer;
 
 namespace connection {
-	class SocketConnection {
+	class SocketConnection : public AbstractSocket {
 	public:
 		SocketConnection();
 		~SocketConnection();

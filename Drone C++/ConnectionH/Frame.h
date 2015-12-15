@@ -7,11 +7,11 @@
 namespace connection {
 	class Frame {
 	public:
-		Frame(std::string cmd);
-		Frame(std::string cmd, std::string param);
+		Frame();
 		~Frame();
 
-		Frame buildFrame();
+		void buildFrame();
+		void buildFrameParams();
 
 		int getFrameLength();
 		const char* getFrame();
@@ -20,10 +20,10 @@ namespace connection {
 		void resetSeqNumb();
 
 		char* wakeup();
+		void navdataDemoMode();
 		void takeoff();
 		void land();
 		void watchdog();
-		//Frame navdata_demomode();
 		void move();
 
 	private:

@@ -16,6 +16,19 @@ namespace connection {
 		closesocket(ConnectSocket);
 		WSACleanup();
 	}
+
+	void NavDataConnection::Wakeup() {
+		std::cout << "Wakeup data control" << std::endl;
+		char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
+		std::cout << wakeup << std::endl;
+
+		std::cout << "Sending wakeup on navData" << std::endl;
+		SendBuff.putBytes(wakeup, 4);
+		std::cout << SendBuff << std::endl;
+		std::cout << SendBuff.farray() << std::endl;
+
+		sendDTGram();
+	}
 }
 
 

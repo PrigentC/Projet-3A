@@ -131,8 +131,8 @@
     <ClCompile Include="Handler\NavDataHandler.cpp">
       <Filter>Fichiers sources\Handler</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClCompile Include="Connection\AbstractSocket.cpp">
+      <Filter>Fichiers sources\Connection</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

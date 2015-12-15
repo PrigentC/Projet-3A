@@ -26,7 +26,7 @@ namespace connection {
 		bool x;
 		setsockopt(ConnectSocket, SOL_SOCKET, SO_REUSEADDR, (char*)&x, sizeof(BOOL));
 
-		u_long iMode = 1;
+		u_long iMode = 0;
 
 		iResult = ioctlsocket(ConnectSocket, FIONBIO, &iMode);
 		if (iResult != NO_ERROR) {
