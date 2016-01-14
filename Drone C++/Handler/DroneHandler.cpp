@@ -7,7 +7,7 @@ namespace handler {
 		NavDataHandler *navData;
 		ATCommandHandler *atc;
 		try {
-			std::cout << "ca marche" << std::endl;
+			std::cout << "Drone handler started and working" << std::endl;
 
 			std::async(std::launch::async, &navData->run);
 			std::async(std::launch::async, &atc->run);

@@ -87,6 +87,6 @@ namespace connection {
 
 	void Frame::move() {
 		com = "PCMD";
-		//Frame f("PCMD", "0,0,0,0,0.5");
+		//Frame frame("PCMD", "0,0,0,0,0.5");
 	}
 }

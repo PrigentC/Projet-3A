@@ -17,7 +17,7 @@ namespace connection {
 		WSACleanup();
 	}
 
-	void NavDataConnection::Wakeup() {
+	void NavDataConnection::wakeUp() {
 		std::cout << "Wakeup data control" << std::endl;
 		char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
 		std::cout << wakeup << std::endl;

@@ -4,6 +4,8 @@ namespace handler {
 	ATCommandHandler::ATCommandHandler() {}
 
 	void ATCommandHandler::run() {
+		std::cout << "AtCommand handler started and working" << std::endl;
+
 		takeOff();
 		watchdog();
 		land();

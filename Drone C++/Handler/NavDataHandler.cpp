@@ -5,6 +5,8 @@ namespace handler {
 	}
 
 	void NavDataHandler::run() {
+		std::cout << "Navdata handler started and working" << std::endl;
+		
 		WakeUp();
 	}
 
@@ -23,8 +25,13 @@ namespace handler {
 		nav.sendDTGram();
 
 		std::cin.ignore();
-		
-		//navData.RecvBuff.getBytes(frame.wakeup(), frame.getFrameLength());
-		//navData.sendDTGram();
+
+		std::cout << "Listening to answer on navData" << std::endl;
+		nav.recvDTGram();
+
+		std::cout << "Answer on navData control" << std::endl;
+		std::cout << nav.RecvBuff << std::endl;
+
+		std::cout << std::endl;
 	}
 }

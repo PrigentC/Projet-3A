@@ -10,13 +10,13 @@ namespace connection {
 	class NavDataConnection : public UDPConnection {
 
 	private :
-		Frame f;
+		Frame frame;
 
 	public:
 		NavDataConnection();
 		~NavDataConnection();
 
-		void Wakeup();
+		void wakeUp();
 
 	};
 

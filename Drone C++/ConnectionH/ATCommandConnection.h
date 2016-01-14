@@ -9,7 +9,7 @@
 namespace connection {
 	class AtCommandConnection : public UDPConnection {
 	private :
-		Frame f;
+		Frame frame;
 
 	public:
 		AtCommandConnection();

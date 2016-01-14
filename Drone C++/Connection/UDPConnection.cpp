@@ -49,7 +49,7 @@ namespace connection {
 	}
 
 	int UDPConnection::recvDTGram() {
-		iResult = recvfrom(ConnectSocket, RecvBuff.farray(), RecvBuff.remaining(), 0, NULL, NULL);
+		iResult = recvfrom(ConnectSocket, RecvBuff.farray(), RecvBuff.remaining(), 0, (struct sockaddr *) &RecvFromAddr, (int *) sizeof RecvFromAddr);
 		if (iResult == SOCKET_ERROR) {
 			wprintf(L"recvfrom failed with error %d\n", WSAGetLastError());
 			return 1;
