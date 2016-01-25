@@ -8,10 +8,6 @@ namespace connection {
 		SendToAddr.sin_port = htons(port);
 		SendToAddr.sin_addr.s_addr = inet_addr(addr);
 
-		RecvFromAddr.sin_family = AF_INET;
-		RecvFromAddr.sin_port = htons(port);
-		RecvFromAddr.sin_addr.s_addr = inet_addr(addr);
-
 		createUDPSocket();
 	}
 
@@ -37,6 +33,18 @@ namespace connection {
 		return 0;
 	}
 
+	int UDPConnection::connectUDPServer() {
+		iResult = connect(ConnectSocket, (SOCKADDR *)& SendToAddr, sizeof(SendToAddr));
+		if (iResult == SOCKET_ERROR) {
+			wprintf(L"connect function failed with error: %ld\n", WSAGetLastError());
+			iResult = closesocket(ConnectSocket);
+			if (iResult == SOCKET_ERROR)
+				wprintf(L"closesocket function failed with error: %ld\n", WSAGetLastError());
+			WSACleanup();
+			return 1;
+		}
+	}
+
 	int UDPConnection::sendDTGram() {
 		iResult = sendto(ConnectSocket, SendBuff.farray(), SendBuff.position(), 0, (struct sockaddr *) &SendToAddr, sizeof SendToAddr);
 		if (iResult == SOCKET_ERROR) {
@@ -49,11 +57,19 @@ namespace connection {
 	}
 
 	int UDPConnection::recvDTGram() {
-		iResult = recvfrom(ConnectSocket, RecvBuff.farray(), RecvBuff.remaining(), 0, (struct sockaddr *) &RecvFromAddr, (int *) sizeof RecvFromAddr);
+		iResult = recv(ConnectSocket, RecvBuff.farray(), RecvBuff.limit(), 0);
+		RecvBuff.putByte('\0');
 		if (iResult == SOCKET_ERROR) {
-			wprintf(L"recvfrom failed with error %d\n", WSAGetLastError());
+			wprintf(L"recv failed with error %d\n", WSAGetLastError());
 			return 1;
 		}
+		char test[292];
+		RecvBuff.getBytes(test, 292);
+
+		for (unsigned i = 0 ; i < 292 ; i++) {
+			wprintf(L"%c", test);
+		}
+
 		return 0;
 	}
 

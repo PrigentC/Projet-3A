@@ -56,33 +56,33 @@ namespace connection {
 		seqNumb = 1;
 	}
 
-	char* Frame::wakeup() {
-		char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
-		return wakeup;
-	}
-
 	void Frame::navdataDemoMode() {
 		com = "CONFIG";
 		params.push_back("\"general:navdata_demo\",");
 		params.push_back("\"TRUE\"");
+		buildFrameParams();
 	}	
 
 	void Frame::takeoff() {
 		com = "REF";
 		params.push_back("290718208");
+		buildFrameParams();
 	}
 
 	void Frame::land() {
 		com = "REF";
 		params.push_back("290717696");
+		buildFrameParams();
 	}
 
 	void Frame::watchdog() {
 		com = "COMWDG";
+		buildFrame();
 	}
 
 	void Frame::fTrim() {
 		com = "FTRIM";
+		buildFrame();
 	}
 
 	void Frame::move() {

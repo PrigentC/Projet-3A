@@ -10,16 +10,12 @@ namespace connection {
 		Frame();
 		~Frame();
 
-		void buildFrame();
-		void buildFrameParams();
-
 		int getFrameLength();
 		const char* getFrame();
 
 		int getCurrentSeqNumb();
 		void resetSeqNumb();
 
-		char* wakeup();
 		void navdataDemoMode();
 		void takeoff();
 		void land();
@@ -33,6 +29,9 @@ namespace connection {
 		std::string com;
 		int seqNumb = 1;
 		std::list<std::string> params;
+
+		void buildFrame();
+		void buildFrameParams();
 	};
 }
 

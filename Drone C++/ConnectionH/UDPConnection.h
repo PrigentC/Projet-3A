@@ -10,12 +10,12 @@ namespace connection {
 		UDPConnection();
 
 		int createUDPSocket();
+		int connectUDPServer();
 		int sendDTGram();
 		int recvDTGram();
 
 	protected:
 		sockaddr_in SendToAddr;
-		sockaddr_in RecvFromAddr;
 
 	};
 }

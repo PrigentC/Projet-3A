@@ -17,9 +17,11 @@ namespace handler {
 		virtual ~ATCommandHandler() {};
 
 	private :
+		static void navDataDemoMode();
 		static void takeOff();
 		static void watchdog();
 		static void land();
+		static void fTrim();
 	};
 }
 

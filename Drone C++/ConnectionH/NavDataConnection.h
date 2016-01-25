@@ -8,7 +8,6 @@
 
 namespace connection {
 	class NavDataConnection : public UDPConnection {
-
 	private :
 		Frame frame;
 
