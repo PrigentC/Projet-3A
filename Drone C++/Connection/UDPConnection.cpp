@@ -12,23 +12,24 @@ namespace connection {
 	}
 
 	int UDPConnection::createUDPSocket() {
-		ConnectSocket = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
+		ConnectSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 		if (ConnectSocket == INVALID_SOCKET) {
 			wprintf(L"socket failed with error: %ld\n", WSAGetLastError());
 			WSACleanup();
 			return 1;
 		}
 
-		bool x;
-		setsockopt(ConnectSocket, SOL_SOCKET, SO_REUSEADDR, (char*)&x, sizeof(BOOL));
+		DWORD x = 10000;
+		//bool x;
+		setsockopt(ConnectSocket, SOL_SOCKET, SO_RCVTIMEO, (char*)&x, sizeof(DWORD));
 
-		u_long iMode = 0;
+		/*u_long iMode = 0;
 
 		iResult = ioctlsocket(ConnectSocket, FIONBIO, &iMode);
 		if (iResult != NO_ERROR) {
 			printf("ioctlsocket failed with error: %d\n", WSAGetLastError());
 			return 1;
-		}
+		}*/
 
 		return 0;
 	}
@@ -43,10 +44,11 @@ namespace connection {
 			WSACleanup();
 			return 1;
 		}
+		return 0;
 	}
 
 	int UDPConnection::sendDTGram() {
-		iResult = sendto(ConnectSocket, SendBuff.farray(), SendBuff.position(), 0, (struct sockaddr *) &SendToAddr, sizeof SendToAddr);
+		iResult = send(ConnectSocket, SendBuff.farray(), SendBuff.position(), 0);
 		if (iResult == SOCKET_ERROR) {
 			wprintf(L"sendto failed with error: %d\n", WSAGetLastError());
 			closesocket(ConnectSocket);
@@ -57,17 +59,19 @@ namespace connection {
 	}
 
 	int UDPConnection::recvDTGram() {
-		iResult = recv(ConnectSocket, RecvBuff.farray(), RecvBuff.limit(), 0);
+		char tmp[292];
+
+		iResult = recv(ConnectSocket, tmp, 292, 0);
 		RecvBuff.putByte('\0');
 		if (iResult == SOCKET_ERROR) {
 			wprintf(L"recv failed with error %d\n", WSAGetLastError());
 			return 1;
 		}
-		char test[292];
-		RecvBuff.getBytes(test, 292);
+
+		RecvBuff.getBytes(tmp, 292);
 
 		for (unsigned i = 0 ; i < 292 ; i++) {
-			wprintf(L"%c", test);
+			wprintf(L"%c", tmp[i]);
 		}
 
 		return 0;

@@ -13,6 +13,10 @@ namespace handler {
 		land();*/
 	}
 
+	void ATCommandHandler::watchdogThread() {
+		watchdog();
+	}
+
 	void ATCommandHandler::navDataDemoMode() {
 		AtCommandConnection atc;
 

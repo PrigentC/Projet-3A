@@ -14,6 +14,7 @@ namespace handler {
 	public:
 		ATCommandHandler();
 		static void run();
+		static void watchdogThread();
 		virtual ~ATCommandHandler() {};
 
 	private :

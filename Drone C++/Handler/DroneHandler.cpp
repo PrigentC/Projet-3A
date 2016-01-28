@@ -11,7 +11,9 @@ namespace handler {
 
 			std::async(std::launch::async, &navData->run);
 			std::async(std::launch::async, &atc->run);
+
 			std::async(std::launch::async, &navData->receive);
+			
 		}
 		catch (std::exception e) {
 			e.what();

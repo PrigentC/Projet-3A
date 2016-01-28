@@ -2,11 +2,11 @@
 
 namespace connection {
 	AtCommandConnection::AtCommandConnection() {
-		SendToAddr.sin_port = htons(5556);
-		SendToAddr.sin_addr.s_addr = inet_addr("192.168.1.1");
-
 		addr = "192.168.1.1";
 		port = 5556;
+		
+		SendToAddr.sin_port = htons(port);
+		SendToAddr.sin_addr.s_addr = inet_addr(addr);
 
 		connectUDPServer();
 	}
