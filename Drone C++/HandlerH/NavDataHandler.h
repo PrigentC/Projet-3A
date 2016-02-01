@@ -19,7 +19,6 @@ namespace handler {
 
 	private :		
 		static void WakeUp();
-		static void ReceiveNavData();
 
 	};
 }

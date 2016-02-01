@@ -65,11 +65,11 @@ void test() {
 
 int main()
 {	
-	test();
+	//test();
 	
-	/*DroneHandler *droneHandler;
+	DroneHandler *droneHandler;
 	droneHandler->run();
-	std::cin.ignore();*/
+	std::cin.ignore();
 	return 0;
 }
 

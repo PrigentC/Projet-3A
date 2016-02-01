@@ -14,6 +14,10 @@ namespace handler {
 		static void run();
 		virtual ~DroneHandler() {};
 
+	private :
+		static NavDataHandler *navData;
+		static ATCommandHandler *atc;
+
 	};
 }
 
