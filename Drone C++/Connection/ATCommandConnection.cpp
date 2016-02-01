@@ -76,6 +76,30 @@ namespace connection {
 		sendDTGram();
 		SendBuff.clear();
 	}
+
+	void AtCommandConnection::hover() {
+		std::cout << "Hovering" << std::endl;
+		//char trame4[] = "AT*FTRIM=3,\r";
+		frame.hover();
+		std::cout << frame.getFrame() << std::endl;
+		SendBuff.putBytes(frame.getFrame(), frame.getFrameLength());
+
+		std::cout << "Sending PCMD (hover) on ATCommands" << std::endl;
+		sendDTGram();
+		SendBuff.clear();
+	}
+
+	void AtCommandConnection::move(float LR, float FB, float vertSpeed, float angSpeed) {
+		std::cout << "Move" << std::endl;
+
+		frame.move(LR, FB, vertSpeed, angSpeed);
+		std::cout << frame.getFrame() << std::endl;
+		SendBuff.putBytes(frame.getFrame(), frame.getFrameLength());
+
+		std::cout << "Sending PCMD (move) on ATCommands" << std::endl;
+		sendDTGram();
+		SendBuff.clear();
+	}
 }
 
 
