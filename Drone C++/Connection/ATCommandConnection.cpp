@@ -4,7 +4,7 @@ namespace connection {
 	AtCommandConnection::AtCommandConnection() {
 		addr = "192.168.1.1";
 		port = 5556;
-		
+
 		SendToAddr.sin_port = htons(port);
 		SendToAddr.sin_addr.s_addr = inet_addr(addr);
 
@@ -73,6 +73,30 @@ namespace connection {
 		SendBuff.putBytes(frame.getFrame(), frame.getFrameLength());
 
 		std::cout << "Sending FTrim on ATCommands" << std::endl;
+		sendDTGram();
+		SendBuff.clear();
+	}
+
+	void AtCommandConnection::hover() {
+		std::cout << "Hovering" << std::endl;
+		//char trame4[] = "AT*FTRIM=3,\r";
+		frame.hover();
+		std::cout << frame.getFrame() << std::endl;
+		SendBuff.putBytes(frame.getFrame(), frame.getFrameLength());
+
+		std::cout << "Sending PCMD (hover) on ATCommands" << std::endl;
+		sendDTGram();
+		SendBuff.clear();
+	}
+
+	void AtCommandConnection::move(float LR, float FB, float vertSpeed, float angSpeed) {
+		std::cout << "Move" << std::endl;
+
+		frame.move(LR, FB, vertSpeed, angSpeed);
+		std::cout << frame.getFrame() << std::endl;
+		SendBuff.putBytes(frame.getFrame(), frame.getFrameLength());
+
+		std::cout << "Sending PCMD (move) on ATCommands" << std::endl;
 		sendDTGram();
 		SendBuff.clear();
 	}

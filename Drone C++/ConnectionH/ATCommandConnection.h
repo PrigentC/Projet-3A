@@ -21,6 +21,8 @@ namespace connection {
 		void land();
 		void watchDog();
 		void fTrim();
+		void hover();
+		void move(float, float, float, float);
 
 	};
 }

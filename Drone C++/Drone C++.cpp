@@ -26,50 +26,79 @@ void test() {
 	atc.connectUDPServer();
 	nav.connectUDPServer();
 
+	/* -------------------------------------------------------- */
+	std::cout << "Sending first message (wakeup)" << std::endl;
 	nav.wakeUp();
-
 	std::cin.ignore();
-	std::cout << "Sending second message" << std::endl;
 
+	/* -------------------------------------------------------- */
+	std::cout << "Sending second message (navData Demo Mode)" << std::endl;
 	atc.navdataDemoMode();
+	std::cin.ignore();
 
+	/* -------------------------------------------------------- */
 	std::cout << "Listening to answer on navData" << std::endl;
-	nav.recvDTGram();
+	//nav.recvDTGram();
 
 	/*std::cout << "Answer on ATCommands control" << std::endl;
 	std::cout << nav.RecvBuff << std::endl;
 
 	std::cout << std::endl;*/
-
 	std::cin.ignore();
+	
+	/* -------------------------------------------------------- */
 	std::cout << "Sending third message (ftrim)" << std::endl;
-
 	atc.fTrim();
-
-
 	std::cin.ignore();
+
+	/* -------------------------------------------------------- */
 	std::cout << "Sending fourth message (take off)" << std::endl;
-
 	atc.takeOff();
-
 	std::cin.ignore();
-	std::cout << "Sending fifth message (watchdog)" << std::endl;
 
+	/* -------------------------------------------------------- */
+	/*std::cout << "Sending message (watchdog)" << std::endl;
 	atc.watchDog();
+	std::cin.ignore();*/
 
+	/* -------------------------------------------------------- */
+	/*std::cout << "Sending  message (hover)" << std::endl;
+	atc.hover();
+	std::cin.ignore();*/
+
+	/* -------------------------------------------------------- */
+	std::cout << "Sending message (move right)" << std::endl;
+	atc.move(0.2, 0, 0, 0);
 	std::cin.ignore();
-	std::cout << "Sending sixth message (land)" << std::endl;
 
+	/* -------------------------------------------------------- */
+	/*std::cout << "Sending message (move back)" << std::endl;
+	atc.move(0, 0.2, 0, 0);
+	std::cin.ignore();*/
+
+	/* -------------------------------------------------------- */
+	/*std::cout << "Sending message (move up)" << std::endl;
+	atc.move(0, 0, 0.2, 0);
+	std::cin.ignore();*/
+
+	/* -------------------------------------------------------- */
+	/*std::cout << "Sending message (rotation)" << std::endl;
+	atc.move(0, 0, 0, 0.2);
+	std::cin.ignore();*/
+
+	/* -------------------------------------------------------- */
+	std::cout << "Sending last message (land)" << std::endl;
 	atc.land();
+	std::cin.ignore();
 }
 
 int main()
 {	
-	//test();
+	test();
 	
-	DroneHandler *droneHandler;
+	/*DroneHandler *droneHandler;
 	droneHandler->run();
-	std::cin.ignore();
+	std::cin.ignore();*/
 	return 0;
 }
 
