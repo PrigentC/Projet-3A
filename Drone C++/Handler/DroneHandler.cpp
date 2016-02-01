@@ -4,16 +4,14 @@ namespace handler {
 	DroneHandler::DroneHandler() {}
 
 	void DroneHandler::run() {
-		NavDataHandler *navData;
-		ATCommandHandler *atc;
+		int i = 0;
 		try {
 			std::cout << "Drone handler started and working" << std::endl;
 
-			std::async(std::launch::async, &navData->run);
-			std::async(std::launch::async, &atc->run);
-
-			std::async(std::launch::async, &navData->receive);
-			
+			std::thread navRun(&navData->run);
+			std::thread atcRun(&atc->run);
+			navRun.join();
+			atcRun.join();
 		}
 		catch (std::exception e) {
 			e.what();
