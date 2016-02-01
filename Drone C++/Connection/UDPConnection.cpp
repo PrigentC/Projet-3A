@@ -19,7 +19,7 @@ namespace connection {
 			return 1;
 		}
 
-		DWORD x = 10000;
+		DWORD x = 2000;
 		//bool x;
 		setsockopt(ConnectSocket, SOL_SOCKET, SO_RCVTIMEO, (char*)&x, sizeof(DWORD));
 
@@ -62,13 +62,14 @@ namespace connection {
 		char tmp[292];
 
 		iResult = recv(ConnectSocket, tmp, 292, 0);
+
 		RecvBuff.putByte('\0');
 		if (iResult == SOCKET_ERROR) {
 			wprintf(L"recv failed with error %d\n", WSAGetLastError());
 			return 1;
 		}
 
-		RecvBuff.getBytes(tmp, 292);
+		RecvBuff.putBytes(tmp, 292);
 
 		for (unsigned i = 0 ; i < 292 ; i++) {
 			wprintf(L"%c", tmp[i]);

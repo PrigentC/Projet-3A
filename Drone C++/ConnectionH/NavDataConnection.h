@@ -9,7 +9,7 @@
 namespace connection {
 	class NavDataConnection : public UDPConnection {
 	private :
-		Frame frame;
+		//Frame frame;
 
 	public:
 		NavDataConnection();
