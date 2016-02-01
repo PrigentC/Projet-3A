@@ -19,95 +19,57 @@ using namespace buffer;
 using namespace connection;
 using namespace handler;
 
-int main()
-{	
-	DroneHandler *droneHandler;
-	droneHandler->run();
-	std::cin.ignore();
-	return 0;
-}
-
 void test() {
 	AtCommandConnection atc;
 	NavDataConnection nav;
 
-	std::cout << "Wakeup data control" << std::endl;
-	char wakeup[] = { 0x01, 0x00, 0x00, 0x00 };
-	std::cout << wakeup << std::endl;
+	atc.connectUDPServer();
+	nav.connectUDPServer();
 
-	std::cout << "Sending wakeup on navData" << std::endl;
-	nav.SendBuff.putBytes(wakeup, 4);
-	std::cout << nav.SendBuff << std::endl;
-	std::cout << nav.SendBuff.farray() << std::endl;
+	nav.wakeUp();
 
-	nav.sendDTGram();
+	std::cin.ignore();
+	std::cout << "Sending second message" << std::endl;
 
-	/*std::cout << "Listening to answer on navData" << std::endl;
+	atc.navdataDemoMode();
+
+	std::cout << "Listening to answer on navData" << std::endl;
 	nav.recvDTGram();
 
-	std::cout << "Answer on navData control" << std::endl;
+	/*std::cout << "Answer on ATCommands control" << std::endl;
 	std::cout << nav.RecvBuff << std::endl;
 
 	std::cout << std::endl;*/
 
 	std::cin.ignore();
-	std::cout << "Sending second message" << std::endl;
+	std::cout << "Sending third message (ftrim)" << std::endl;
 
-	std::cout << "Navdata_demo data control" << std::endl;
-	char trame1[] = "AT*CONFIG=1,\"general:navdata_demo\",\"TRUE\"\r";
-	std::cout << trame1 << std::endl;
-
-	atc.SendBuff.putBytes(trame1, 43);
-
-	std::cout << "Sending Navdata_demo on ATCommands" << std::endl;
-	atc.sendDTGram();
-	atc.SendBuff.clear();
-
-	/*std::cout << "Listening to answer on navData" << std::endl;
-	atc.recvDTGram();
-
-	std::cout << "Answer on ATCommands control" << std::endl;
-	std::cout << atc.RecvBuff << std::endl;
-
-	std::cout << std::endl;*/
+	atc.fTrim();
 
 
 	std::cin.ignore();
-	std::cout << "Sending third message (take off)" << std::endl;
+	std::cout << "Sending fourth message (take off)" << std::endl;
 
-	std::cout << "TakeOff data control" << std::endl;
-	char trame3[] = "AT*REF=2,290718208\r";
-	std::cout << trame3 << std::endl;
-	atc.SendBuff.putBytes(trame3, 20);
-
-	std::cout << "Sending TakeOff on ATCommands" << std::endl;
-	atc.sendDTGram();
-	atc.SendBuff.clear();
-
+	atc.takeOff();
 
 	std::cin.ignore();
-	std::cout << "Sending fourth message (watchdog)" << std::endl;
+	std::cout << "Sending fifth message (watchdog)" << std::endl;
 
-	std::cout << "Watchdog data control" << std::endl;
-	char trame4[] = "AT*COMWDG=3,\r";
-	std::cout << trame4 << std::endl;
-	atc.SendBuff.putBytes(trame4, 14);
-
-	std::cout << "Sending WatchDog on ATCommands" << std::endl;
-	atc.sendDTGram();
-	atc.SendBuff.clear();
-
+	atc.watchDog();
 
 	std::cin.ignore();
-	std::cout << "Sending fifth message (land)" << std::endl;
+	std::cout << "Sending sixth message (land)" << std::endl;
 
-	std::cout << "Land data control" << std::endl;
-	char trame5[] = "AT*REF=2,290717696\r";
-	std::cout << trame5 << std::endl;
-	atc.SendBuff.putBytes(trame5, 20);
+	atc.land();
+}
 
-	std::cout << "Sending Land on ATCommands" << std::endl;
-	atc.sendDTGram();
-	atc.SendBuff.clear();
+int main()
+{	
+	test();
+	
+	/*DroneHandler *droneHandler;
+	droneHandler->run();
+	std::cin.ignore();*/
+	return 0;
 }
 

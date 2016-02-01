@@ -63,7 +63,7 @@ namespace connection {
 
 		iResult = recv(ConnectSocket, tmp, 292, 0);
 
-		RecvBuff.putByte('\0');
+		tmp[iResult - 1] = '\0';
 		if (iResult == SOCKET_ERROR) {
 			wprintf(L"recv failed with error %d\n", WSAGetLastError());
 			return 1;
