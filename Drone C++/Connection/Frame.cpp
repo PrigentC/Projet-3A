@@ -30,26 +30,14 @@ namespace connection {
 		seqNumb++;
 		frame.append(",");
 
-		int l = params.size();
-
-		for (int i = 0 ; i < l ; i++) {
+		for (int i = 0 ; i < params.size()+1 ; i++) {
 			frame.append(params.front());
 			params.pop_front();
-
-			if (i != l-1) {
-				frame.append(",");
-			}
 		}
 
 		frame.append("\r");
 
 		params.clear();
-	}
-
-	int Frame::floatToIntegerByteByByte(float f) {
-		int result;
-		::memcpy(&result, &f, sizeof(int));
-		return result;
 	}
 
 	int Frame::getFrameLength() {
@@ -70,7 +58,7 @@ namespace connection {
 
 	void Frame::navdataDemoMode() {
 		com = "CONFIG";
-		params.push_back("\"general:navdata_demo\"");
+		params.push_back("\"general:navdata_demo\",");
 		params.push_back("\"TRUE\"");
 		buildFrameParams();
 	}	
@@ -97,23 +85,8 @@ namespace connection {
 		buildFrame();
 	}
 
-	void Frame::hover() {
+	void Frame::move() {
 		com = "PCMD";
-		params.push_back("1");
-		params.push_back("0");
-		params.push_back("0");
-		params.push_back("0");
-		params.push_back("0");
-		buildFrameParams();
-	}
-
-	void Frame::move(float LR, float FB, float vertSpeed, float angSpeed) {
-		com = "PCMD";
-		params.push_back("1");
-		params.push_back(std::to_string(floatToIntegerByteByByte(LR)));
-		params.push_back(std::to_string(floatToIntegerByteByByte(FB)));
-		params.push_back(std::to_string(floatToIntegerByteByByte(vertSpeed)));
-		params.push_back(std::to_string(floatToIntegerByteByByte(angSpeed)));
-		buildFrameParams();
+		//Frame frame("PCMD", "0,0,0,0,0.5");
 	}
 }

@@ -16,14 +16,12 @@ namespace connection {
 		int getCurrentSeqNumb();
 		void resetSeqNumb();
 
-
 		void navdataDemoMode();
 		void takeoff();
 		void land();
 		void watchdog();
 		void fTrim();
-		void hover();
-		void move(float, float, float, float);
+		void move();
 
 	private:
 		std::string frame;
@@ -34,8 +32,6 @@ namespace connection {
 
 		void buildFrame();
 		void buildFrameParams();
-
-		int floatToIntegerByteByByte(float);
 	};
 }
 

@@ -31,12 +31,6 @@
     <Filter Include="Fichiers sources\Handler">
       <UniqueIdentifier>{3bf22184-3cee-4e22-b89e-03390569d311}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\3DMouseH">
-      <UniqueIdentifier>{164f9e58-c62c-47e7-8d70-83ed6bb84d68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\3DMouse">
-      <UniqueIdentifier>{2149f7fc-1a70-4d65-b0c9-92eff61a971e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
