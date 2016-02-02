@@ -15,7 +15,7 @@ namespace handler {
 //		ReceiveNavData();
 	}
 
-	void NavDataHandler::WakeUp() {
+	void NavDataHandler::wakeUp() {
 		NavDataConnection nav;
 
 		std::cout << std::endl << "Sending wakeup on navData";

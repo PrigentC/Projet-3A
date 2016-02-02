@@ -18,7 +18,7 @@ namespace handler {
 		virtual ~NavDataHandler() {};
 
 	private :		
-		static void WakeUp();
+		static void wakeUp();
 
 	};
 }

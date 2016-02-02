@@ -210,3 +210,9 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+Drone C++/Drone C++.vcxproj
+Drone C++/Drone C++.vcxproj
+Drone C++/Inc/3DxWareVersionNumbers.h
+Drone C++/Inc/si.h
+Drone C++/Inc/siapp.h
+Drone C++/Inc/siappcmd.h

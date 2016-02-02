@@ -6,6 +6,9 @@
 
 #include <thread>
 #include <future>
+#include "spwmacro.h"
+#include "si.h"
+#include "siapp.h"
 
 using namespace connection;
 
@@ -14,7 +17,6 @@ namespace handler {
 	public:
 		ATCommandHandler();
 		static void run();
-		static void watchdogThread();
 		virtual ~ATCommandHandler() {};
 
 	private :
@@ -23,6 +25,7 @@ namespace handler {
 		static void watchdog();
 		static void land();
 		static void fTrim();
+		static void move(SiSpwEvent *);
 	};
 }
 

@@ -13,10 +13,6 @@ namespace handler {
 		land();
 	}
 
-	void ATCommandHandler::watchdogThread() {
-		watchdog();
-	}
-
 	void ATCommandHandler::navDataDemoMode() {
 		AtCommandConnection atc;
 
@@ -55,5 +51,8 @@ namespace handler {
 		std::cout << "Sending fTrim on ATCommands" << std::endl;
 		atc.fTrim();
 		std::cin.ignore();
+	}
+
+	void ATCommandHandler::move(SiSpwEvent *sEvent) {
 	}
 }
