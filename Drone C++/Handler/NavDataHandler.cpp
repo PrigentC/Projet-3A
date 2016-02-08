@@ -6,7 +6,7 @@ namespace handler {
 
 	void NavDataHandler::run() {
 		std::cout << "Navdata handler started and working";
-		WakeUp();
+		wakeUp();
 	}
 
 	void NavDataHandler::receive() {
