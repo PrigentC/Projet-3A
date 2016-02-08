@@ -107,13 +107,13 @@ namespace connection {
 		buildFrameParams();
 	}
 
-	void Frame::move(float LR, float FB, float vertSpeed, float angSpeed) {
+	void Frame::move(float LR, float FB, float throttle, float yaw) {
 		com = "PCMD";
 		params.push_back("1");
 		params.push_back(std::to_string(floatToIntegerByteByByte(LR)));
 		params.push_back(std::to_string(floatToIntegerByteByByte(FB)));
-		params.push_back(std::to_string(floatToIntegerByteByByte(vertSpeed)));
-		params.push_back(std::to_string(floatToIntegerByteByByte(angSpeed)));
+		params.push_back(std::to_string(floatToIntegerByteByByte(throttle)));
+		params.push_back(std::to_string(floatToIntegerByteByByte(yaw)));
 		buildFrameParams();
 	}
 }

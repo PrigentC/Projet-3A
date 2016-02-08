@@ -31,17 +31,23 @@
     <Filter Include="Fichiers sources\Handler">
       <UniqueIdentifier>{3bf22184-3cee-4e22-b89e-03390569d311}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\3DMouse">
+      <UniqueIdentifier>{5017dd27-cf6e-4b6f-95d7-82bbf1dcd36a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\3DMouseH">
+      <UniqueIdentifier>{97639a8c-1e2e-4efc-befb-f5b09f294297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers de ressources\Inc">
+      <UniqueIdentifier>{4536bcca-71c4-47c8-a0cb-703847ed7840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers de ressources\Lib">
+      <UniqueIdentifier>{24ad2d84-79e1-4401-9db1-e83a775c8082}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="BufferH\Buffer.h">
       <Filter>Fichiers d%27en-tête\BufferH</Filter>
     </ClInclude>
@@ -50,9 +56,6 @@
     </ClInclude>
     <ClInclude Include="ConnectionH\SocketConnection.h">
       <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
-    </ClInclude>
-    <ClInclude Include="DroneConstants.h">
-      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ConnectionH\UDPConnection.h">
       <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
@@ -86,6 +89,63 @@
     </ClInclude>
     <ClInclude Include="ConnectionH\AbstractSocket.h">
       <Filter>Fichiers d%27en-tête\ConnectionH</Filter>
+    </ClInclude>
+    <ClInclude Include="3DMouseH\FlightInput.h">
+      <Filter>Fichiers d%27en-tête\3DMouseH</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\3DxWareVersionNumbers.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\si.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siapp.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siappcmd.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siappcmd_types.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SiCfg.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siDefines.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siSync.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siSyncDefines.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\siSyncPriv.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\spwdata.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\spwerror.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\spwmacro.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\spwmath.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\V3DCMD.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\V3DKey.h">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\virtualkeys.hpp">
+      <Filter>Fichiers de ressources\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="HandlerH\BlockingQueue.h">
+      <Filter>Fichiers d%27en-tête\HandlerH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,5 +197,25 @@
     <ClCompile Include="Connection\AbstractSocket.cpp">
       <Filter>Fichiers sources\Connection</Filter>
     </ClCompile>
+    <ClCompile Include="3DMouse\FlightInput.cpp">
+      <Filter>Fichiers sources\3DMouse</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Lib\siapp.lib">
+      <Filter>Fichiers de ressources\Lib</Filter>
+    </Library>
+    <Library Include="Lib\spwmath.lib">
+      <Filter>Fichiers de ressources\Lib</Filter>
+    </Library>
+    <Library Include="Lib\spwmathD.lib">
+      <Filter>Fichiers de ressources\Lib</Filter>
+    </Library>
+    <Library Include="Lib\spwmathMT.lib">
+      <Filter>Fichiers de ressources\Lib</Filter>
+    </Library>
+    <Library Include="Lib\spwmathMTD.lib">
+      <Filter>Fichiers de ressources\Lib</Filter>
+    </Library>
   </ItemGroup>
 </Project>
