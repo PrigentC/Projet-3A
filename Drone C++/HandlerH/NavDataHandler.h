@@ -14,7 +14,6 @@ namespace handler {
 	public:
 		NavDataHandler();
 		static void run();
-		static void receive();
 		virtual ~NavDataHandler() {};
 
 	private :		

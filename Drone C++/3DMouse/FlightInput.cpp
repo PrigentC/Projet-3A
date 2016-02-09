@@ -85,23 +85,22 @@ void FlightInput::listen() {
 	int bRet;
 	MSG msg;      /* incoming message to be evaluated */
 
-	std::cout << "TX=0 TY=0 TZ=0 RX=0 RY=0 RZ=0" << std::endl;
-
 	int i = 0;
+
+	std::cout << "TX=0 TY=0 TZ=0 RX=0 RY=0 RZ=0" << std::endl;
 
 	while (bRet = GetMessage(&msg, NULL, 0, 0)) {
 		if (bRet == -1) {
 			/* handle the error and possibly exit */
 			return;
 		} else {
-			i++;
-
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-
-			if (i == 50) {
+			if (i > 1) {
 				break;
 			}
+
+			i++;
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
 	}
 }
@@ -145,7 +144,7 @@ float FlightInput::getNormalizedTX(long TX) {
 	if (TX < 0) {
 		return -TX / negMax;
 	} else {
-		return TX / negMax;
+		return TX / posMax;
 	}
 }
 
@@ -164,7 +163,7 @@ float FlightInput::getNormalizedTY(long TY) {
 	if (TY < 0) {
 		return -TY / negMax;
 	} else {
-		return TY / negMax;
+		return TY / posMax;
 	}
 }
 
@@ -183,7 +182,7 @@ float FlightInput::getNormalizedTZ(long TZ) {
 	if (TZ < 0) {
 		return -TZ / negMax;
 	} else {
-		return TZ / negMax;
+		return TZ / posMax;
 	}
 }
 
@@ -202,7 +201,7 @@ float FlightInput::getNormalizedRX(long RX) {
 	if (RX < 0) {
 		return -RX / negMax;
 	} else {
-		return RX / negMax;
+		return RX / posMax;
 	}
 }
 
@@ -221,7 +220,7 @@ float FlightInput::getNormalizedRY(long RY) {
 	if (RY < 0) {
 		return -RY / negMax;
 	} else {
-		return RY / negMax;
+		return RY / posMax;
 	}
 }
 
@@ -240,7 +239,7 @@ float FlightInput::getNormalizedRZ(long RZ) {
 	if (RZ < 0) {
 		return -RZ / negMax;
 	} else {
-		return RZ / negMax;
+		return RZ / posMax;
 	}
 }
 
@@ -282,10 +281,10 @@ void  FlightInput::SbMotionEvent(SiSpwEvent *pEvent) {
 		<< " RZ=" << getNormalizedRZ(getRZ(pEvent)) << std::endl;
 
 
-	pitch.push_back(getNormalizedRX(getRX(pEvent)));
-	roll.push_back(getNormalizedRZ(getRZ(pEvent)));
-	yaw.push_back(getNormalizedRZ(getRZ(pEvent)));
-	throttle.push_back(getNormalizedTY(getTY(pEvent)));
+	pitch = getNormalizedTX(getTX(pEvent));
+	roll = getNormalizedTZ(getTZ(pEvent));
+	yaw = getNormalizedRZ(getRZ(pEvent));
+	throttle = getNormalizedTY(getTY(pEvent));
 }
 
 void  FlightInput::SbZeroEvent() {

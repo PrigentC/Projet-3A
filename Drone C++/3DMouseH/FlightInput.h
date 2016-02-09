@@ -12,10 +12,10 @@
 namespace mouse3D {
 	class FlightInput {
 	public:
-		std::list<float> pitch;
-		std::list<float> roll;
-		std::list<float> throttle;
-		std::list<float> yaw;
+		float pitch;
+		float roll;
+		float throttle;
+		float yaw;
 
 		FlightInput();
 		~FlightInput();

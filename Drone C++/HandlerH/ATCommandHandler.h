@@ -3,6 +3,7 @@
 
 #include "../ConnectionH/ATCommandConnection.h"
 #include "../ConnectionH/Frame.h"
+#include "../3DMouseH/FlightInput.h"
 
 #include <thread>
 #include <future>
@@ -11,6 +12,7 @@
 #include "siapp.h"
 
 using namespace connection;
+using namespace mouse3D;
 
 namespace handler {
 	class ATCommandHandler {
@@ -25,7 +27,7 @@ namespace handler {
 		static void watchdog();
 		static void land();
 		static void fTrim();
-		static void move(SiSpwEvent *);
+		static void move();
 	};
 }
 

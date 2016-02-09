@@ -1,6 +1,8 @@
 #include "../HandlerH/NavDataHandler.h"
 
 namespace handler {
+	NavDataConnection nav;
+
 	NavDataHandler::NavDataHandler() {
 	}
 
@@ -9,15 +11,7 @@ namespace handler {
 		wakeUp();
 	}
 
-	void NavDataHandler::receive() {
-		std::cout << "Navdata handler listening to Drone" << std::endl;
-
-//		ReceiveNavData();
-	}
-
 	void NavDataHandler::wakeUp() {
-		NavDataConnection nav;
-
 		std::cout << std::endl << "Sending wakeup on navData";
 		nav.wakeUp();
 		std::cin.ignore();
@@ -26,7 +20,7 @@ namespace handler {
 		std::this_thread::yield;
 
 		std::cout << std::endl << "Listening to answer on navData" << std::endl;
-		nav.recvDTGram();
+		//nav.recvDTGram();
 		std::cout << std::endl;
 
 		std::cout << "Answer on navData control" << std::endl;
