@@ -11,7 +11,7 @@ namespace handler {
 		navDataDemoMode();
 		fTrim();
 		takeOff();
-		//watchdog();
+		watchdog();
 		move();
 		land();
 	}
@@ -56,7 +56,7 @@ namespace handler {
 			i++;
 		}*/
 
-		while (i < 300) {
+		while (i < 200) {
 			fi.listen();
 
 			std::cout << "Sending move on ATCommands" << std::endl;

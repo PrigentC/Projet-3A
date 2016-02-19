@@ -32,6 +32,10 @@ namespace connection {
 
 		sendDTGram();*/
 	}
+
+	void NavDataConnection::receive() {
+		recvDTGram();
+	}
 }
 
 

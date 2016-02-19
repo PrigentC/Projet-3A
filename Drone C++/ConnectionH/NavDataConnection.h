@@ -16,6 +16,7 @@ namespace connection {
 		~NavDataConnection();
 
 		void wakeUp();
+		void receive();
 
 	};
 

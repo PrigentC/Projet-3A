@@ -281,9 +281,9 @@ void  FlightInput::SbMotionEvent(SiSpwEvent *pEvent) {
 		<< " RZ=" << getNormalizedRZ(getRZ(pEvent)) << std::endl;
 
 
-	pitch = getNormalizedTX(getTX(pEvent));
-	roll = getNormalizedTZ(getTZ(pEvent));
-	yaw = getNormalizedRZ(getRZ(pEvent));
+	pitch = getNormalizedTZ(getTZ(pEvent));
+	roll = getNormalizedTX(getTX(pEvent));
+	yaw = getNormalizedRY(getRY(pEvent));
 	throttle = getNormalizedTY(getTY(pEvent));
 }
 

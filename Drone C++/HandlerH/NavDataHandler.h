@@ -18,6 +18,7 @@ namespace handler {
 
 	private :		
 		static void wakeUp();
+		static void receive();
 
 	};
 }
